@@ -6,6 +6,7 @@ arctic-config.php
 config.local.php
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 
