@@ -2,7 +2,7 @@
   "name": "arctic-web-vercel",
   "private": true,
   "type": "module",
-  "engines": { "node": "20.x" },
+  "engines": { "node": "26.x" },
   "scripts": {
     "dev": "vercel dev",
     "test": "node --test test/"
