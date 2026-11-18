@@ -1,0 +1,37 @@
+# === GIZLI / PAYLASILMAMASI GEREKENLER ===
+# Gercek yapilandirma (DB sifresi, SMTP sifresi, admin token)
+config.php
+**/config.php
+arctic-config.php
+config.local.php
+.env
+.env.*
+*.pem
+*.key
+
+# Yerel test ciktilari (test veritabani, giden mail kayitlari)
+local-test/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Waitlist verisi / disa aktarilan listeler (kisisel veri)
+export*.csv
+*.csv
+
+# Yedekler / paketler
+*.zip
+
+# Arac ve editor dosyalari
+.claude/
+**/.openai/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+.vercel/
+
+# NOT: config.sample.php ve config.local-test.sample.php dosyalari
+# yalnizca ornek/placeholder icerir, repoda kalmali.

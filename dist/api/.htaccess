@@ -1,0 +1,5 @@
+# Ic dosyalara ve ayar dosyalarina dogrudan erisimi engelle
+<FilesMatch "^(config\.php|config\.sample\.php)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
