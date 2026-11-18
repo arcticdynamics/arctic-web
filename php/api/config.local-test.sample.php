@@ -1,5 +1,5 @@
 <?php
-// SADECE YEREL TEST. Bunu "config.php" olarak kopyala (dist/api/config.php).
+// SADECE YEREL TEST. Bunu "config.php" olarak kopyala (php/api/config.php).
 // MySQL ve gercek mail gerekmez: veritabani dosyaya, mailler log dosyasina yazilir.
 // Bu dosyayi/ayarlari canli sunucuya YUKLEME.
 return [

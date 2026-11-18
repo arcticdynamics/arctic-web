@@ -5,7 +5,7 @@ Arctic Dynamics, yerel çalışan (local-first) bir yapay zeka kodlama ajanı ge
 
 Tasarım ChatGPT ile üretildi (koyu lacivert/buz mavisi tema, hourglass animasyonu) ve **olduğu gibi korunuyor**. Önceden site tamamen statikti: form sahteydi, hiçbir şey kaydetmiyor, mail göndermiyordu. Bu çalışmada gerçek bir backend eklendi.
 
-**Kaynak geçmişi:** İlk statik sürüm ChatGPT Sites'ta yayındaydı (v17, commit `a471c23b`, `https://arctic-dynamics-web.earnedgame4.chatgpt.site/`). Bu adres eski statik halidir; form çalışmaz. Güncel kaynak `dist/` klasörüdür. Klasördeki `.openai/hosting.json` dosyaları o ortamın manifestidir, Spaceship'te kullanılmaz.
+**Kaynak geçmişi:** İlk statik sürüm ChatGPT Sites'ta yayındaydı (v17, commit `a471c23b`, `https://arctic-dynamics-web.earnedgame4.chatgpt.site/`). Bu adres eski statik halidir; form çalışmaz. Güncel kaynak `php/` klasörüdür. Klasördeki `.openai/hosting.json` dosyaları o ortamın manifestidir, Spaceship'te kullanılmaz.
 
 ## 2. Yapılanlar
 | Alan | Önce | Şimdi |
@@ -55,7 +55,7 @@ public_html'in ÜSTÜNDE (web'den erişilemez):
 ### Dosya yapısı
 ```
 ArcticWeb/
-├─ dist/                         ← yayına giden klasör (public_html'e yüklenir)
+├─ php/                          ← yayına giden klasör (public_html'e yüklenir)
 │  ├─ index.html
 │  ├─ assets/ …
 │  └─ api/
@@ -65,9 +65,11 @@ ArcticWeb/
 │     ├─ config.local-test.sample.php   (yerel test şablonu)
 │     ├─ .htaccess
 │     └─ lib/ bootstrap.php, smtp.php, templates.php, .htaccess
-├─ YAYIN_REHBERI.md              ← panel adımları
-├─ PROJE_DOKUMANTASYON.md        ← bu dosya
-└─ arctic-site.zip               ← yayın paketi
+├─ docs/
+│  ├─ YAYIN_REHBERI.md           ← panel adımları
+│  ├─ PROJE_DOKUMANTASYON.md     ← bu dosya
+│  └─ TEST_RAPORU.md
+└─ arctic-site.zip               ← yayın paketi (repoda yok, .gitignore)
 ```
 
 ### Veri modeli
@@ -100,7 +102,7 @@ ArcticWeb/
 Kurulum adımları: [YAYIN_REHBERI.md](YAYIN_REHBERI.md).
 
 ## 5. Ayar dosyası
-`dist/api/config.sample.php` şablonunu doldurup `public_html`'in **üstüne** `arctic-config.php` adıyla koyun. Yoksa yedek olarak `dist/api/config.php` okunur (`.htaccess` ile dışarıya kapalı, ama üst klasör daha güvenli). Gerçek ayar dosyası zip'e ve repoya **girmemeli**.
+`php/api/config.sample.php` şablonunu doldurup `public_html`'in **üstüne** `arctic-config.php` adıyla koyun. Yoksa yedek olarak `php/api/config.php` okunur (`.htaccess` ile dışarıya kapalı, ama üst klasör daha güvenli). Gerçek ayar dosyası zip'e ve repoya **girmemeli**.
 
 ## 6. Yerelde test
 
@@ -122,8 +124,8 @@ Alternatif: https://windows.php.net/download adresinden "Thread Safe" zip'i indi
 ### Çalıştırma
 ```powershell
 cd C:\Users\ilayd\Desktop\ArcticWeb
-copy dist\api\config.local-test.sample.php dist\api\config.php
-php -S localhost:8000 -t dist
+copy php\api\config.local-test.sample.php php\api\config.php
+php -S localhost:8000 -t php
 ```
 Tarayıcıda http://localhost:8000 açın, "Join the waitlist" ile bir e-posta girin.
 

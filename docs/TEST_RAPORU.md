@@ -1,7 +1,7 @@
 # Arctic Dynamics — Test Raporu ve Gereklilikler
 
 **Test tarihi:** 2026-11-14
-**Test edilen:** `dist/` klasörü (index.html + api/)
+**Test edilen:** `php/` klasörü (index.html + api/)
 **Ortam:** Windows 11, Docker Desktop 29.9.2, tarayıcı simülasyonu
 
 > Testlerde yalnızca sahte test değerleri kullanıldı (test şifreleri, `@example.com` / `@arctic.test` adresleri). Gerçek şifre, domain veya mail kutusu kullanılmadı. Proje dosyalarında hiçbir değişiklik yapılmadı.
@@ -36,7 +36,7 @@ Yöntem: yerel HTTP sunucusu + tarayıcıda görünüm boyutu simülasyonu. Ger�
 
 ## 3. Tasarım değişti mi?
 
-`dist/index.html`, ChatGPT'de yayındaki özgün sürümle (`arctic-dynamics-web.earnedgame4.chatgpt.site`) satır satır karşılaştırıldı.
+`php/index.html`, ChatGPT'de yayındaki özgün sürümle (`arctic-dynamics-web.earnedgame4.chatgpt.site`) satır satır karşılaştırıldı.
 
 **Değişenler (yalnızca form ve backend bağlantısı):**
 - Form alanları: gizli honeypot alanı (`website`), `maxlength="254"`, buton `id`'si.
@@ -96,7 +96,7 @@ Gerçek `subscribe.php` ve `export.php`, gerçek MySQL 8 ve gerçek bir SMTP sun
    - `salt` ve `admin_token` için uzun, rastgele değerler kullan.
    - Şifreleri sohbete, repoya veya herkese açık bir yere yazma.
 5. **MySQL veritabanı** cPanel'de oluşturulur; tablolar ilk kayıtta otomatik oluşur.
-6. **Yükleme:** `dist/` içeriği `public_html`'e yüklenir. `.openai/hosting.json` Spaceship'te kullanılmaz.
+6. **Yükleme:** `php/` içeriği `public_html`'e yüklenir. `.openai/hosting.json` Spaceship'te kullanılmaz.
 7. **Canlı doğrulama:** gerçek bir e-postayla kayıt yap; mailin gelip gelmediğine ve `mail_status` değerine bak. Mail gitmezse hosting error log'unda `waitlist mail:` satırı nedeni yazar.
 8. **Gelen kayıtlar:** `https://siteadresi/api/export.php?token=ADMIN_TOKEN` ile CSV olarak indirilir (Excel'de açılır).
 
@@ -106,7 +106,7 @@ Docker Desktop açıkken, üç konteyner aynı ağda kurulur:
 
 - `mysql:8` (veritabanı `arctic`, test kullanıcısı)
 - `axllent/mailpit` (SMTP 1025, mail arayüzü 8025; `MP_SMTP_AUTH_ACCEPT_ANY=1`, `MP_SMTP_AUTH_ALLOW_INSECURE=1`)
-- `php:8.3-apache` + `docker-php-ext-install pdo_mysql`, `dist/` klasörü `/var/www/html`'e, test ayar dosyası `/var/www/arctic-config.php`'ye salt okunur bağlanır
+- `php:8.3-apache` + `docker-php-ext-install pdo_mysql`, `php/` klasörü `/var/www/html`'e, test ayar dosyası `/var/www/arctic-config.php`'ye salt okunur bağlanır
 
 Test ayar dosyasındaki SMTP bilgisi `port: 1025` olmalı; kod 465 dışındaki portlarda şifrelemesiz bağlanır. Gerçek 465 SSL yolu bu düzenekle test edilemez.
 
@@ -118,7 +118,7 @@ Salt okunur bir güvenlik agent'ı tüm projeyi inceledi. Ciddi bir açık çık
 
 | Bulgu | Düzeltme | Test sonucu |
 |---|---|---|
-| Kök `.htaccess` yok | `dist/.htaccess` eklendi: HTTP→HTTPS yönlendirmesi (localhost hariç), CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, HSTS | Başlıklar geldi; localhost dışı host 301 ile `https://`'e yönlendi |
+| Kök `.htaccess` yok | `php/.htaccess` eklendi: HTTP→HTTPS yönlendirmesi (localhost hariç), CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, HSTS | Başlıklar geldi; localhost dışı host 301 ile `https://`'e yönlendi |
 | CSP sayfayı bozabilir | CSP satır içi script/stile izin verecek şekilde yazıldı | Tarayıcıda ihlal 0; animasyon (136), görseller, form gönderimi çalıştı |
 | Zip'te `api\lib\...` ters eğik çizgi | Zip `/` ayraçlı yeniden üretildi | Girdi yolları `api/lib/bootstrap.php` biçiminde |
 | `.openai/` ve `config.local-test.sample.php` yayın paketinde | Zip'ten çıkarıldı; kök `.htaccess` ile web'den de kapatıldı (kaynak dosyalar yerinde duruyor) | İkisi de 403 |
