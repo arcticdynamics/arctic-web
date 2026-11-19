@@ -15,19 +15,29 @@ h3{font-size:1rem;margin:22px 0 6px}
 p,li{color:var(--muted)}
 a{color:var(--cyan)}
 .meta{font-size:.85rem}
-.lang{display:flex;gap:8px;margin:16px 0 24px}
-.lang button{font:inherit;font-size:.85rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
-.lang button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+.top{position:sticky;top:0;z-index:5;background:rgba(4,17,29,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:760px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:700;letter-spacing:.14em;font-size:.8rem}
+.brand img{width:32px;height:32px}
+.top-right{display:flex;align-items:center;gap:18px;font-size:.9rem}
+.top-right a{text-decoration:none}
+.lang-sel{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.lang-sel select{font:inherit;font-size:.85rem;color:var(--ink);background:#061827;border:1px solid var(--line);border-radius:7px;padding:6px 8px;cursor:pointer}
+.lang-sel select:focus{outline:2px solid var(--cyan);outline-offset:1px}
+@media(max-width:480px){.brand span{display:none}}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
-<main>
-<p><a href="/">&larr; Back to site</a></p>
-<div class="lang" role="group" aria-label="Language">
-<button type="button" data-lang="en" aria-pressed="true">English</button>
-<button type="button" data-lang="tr" aria-pressed="false">Türkçe</button>
+<header class="top"><div class="top-in">
+<a class="brand" href="/" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span>ARCTIC DYNAMICS</span></a>
+<div class="top-right">
+<a href="/" id="back">&larr; Back to site</a>
+<label class="lang-sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.500 0 18M12 3c-3 3.5-3 14.500 0 18"/></svg><span class="sr" hidden>Language</span>
+<select id="langSel" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option></select></label>
 </div>
+</div></header>
+<main>
 
 <section id="en" lang="en">
 <h1>Privacy Notice</h1>
@@ -38,6 +48,8 @@ a{color:var(--cyan)}
 
 <h3>What we collect and why</h3>
 <ul>
+<li><strong>Full name</strong> – so we know who is on the waitlist and can address you properly when we contact you.</li>
+<li><strong>Tester interest</strong> – if you sign up through the "Become a tester" button, we note that you want to test early versions and may email you about testing.</li>
 <li><strong>Email address</strong> – to add you to the early-access waitlist. We do not send any emails at this stage. If we later contact you (for example, to announce access), we will do so only for the waitlist purpose.</li>
 <li><strong>Time of your consent</strong> – we record when you ticked the consent box, as proof of your consent.</li>
 <li><strong>Hashed IP address</strong> – a salted hash, not the IP itself, kept for 24 hours to prevent abuse (rate limiting). It is then deleted automatically.</li>
@@ -69,6 +81,8 @@ a{color:var(--cyan)}
 
 <h3>Hangi verileri neden topluyoruz?</h3>
 <ul>
+<li><strong>Ad soyad</strong> – bekleme listesindeki kişiyi tanımak ve sizinle iletişime geçtiğimizde doğru hitap edebilmek için.</li>
+<li><strong>Test kullanıcısı tercihi</strong> – "Become a tester" düğmesiyle kaydolursanız erken sürümleri test etmek istediğinizi not eder ve test için size e-posta gönderebiliriz.</li>
 <li><strong>E-posta adresi</strong> – erken erişim bekleme listesine kaydınızı yapmak için. Şu aşamada size e-posta göndermiyoruz. İleride sizinle iletişime geçersek (örneğin erişim duyurusu için) bunu yalnızca bekleme listesi amacıyla yaparız.</li>
 <li><strong>Rıza zamanı</strong> – onay kutusunu işaretlediğiniz an, rızanızın kanıtı olarak kaydedilir.</li>
 <li><strong>Özetlenmiş (hash) IP adresi</strong> – IP adresinin kendisi değil, tuzlanmış özeti; kötüye kullanımı (aşırı deneme) önlemek için 24 saat saklanır ve ardından otomatik silinir.</li>
@@ -92,15 +106,16 @@ a{color:var(--cyan)}
 </main>
 <script>
 (function(){
-  var secs={en:document.getElementById('en'),tr:document.getElementById('tr')},btns=document.querySelectorAll('[data-lang]');
+  var secs={en:document.getElementById('en'),tr:document.getElementById('tr')},sel=document.getElementById('langSel'),back=document.getElementById('back');
   function set(l){
     if(!secs[l])l='en';
     for(var k in secs)secs[k].hidden=(k!==l);
     document.documentElement.lang=l;
-    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l))});
+    sel.value=l;
+    back.textContent=l==='tr'?'← Siteye dön':'← Back to site';
     document.title=l==='tr'?'Aydınlatma Metni – Arctic Dynamics':'Privacy Notice – Arctic Dynamics';
   }
-  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.lang);history.replaceState(null,'','#'+b.dataset.lang)})});
+  sel.addEventListener('change',function(){set(sel.value);history.replaceState(null,'','#'+sel.value)});
   set(location.hash==='#tr'?'tr':'en');
 })();
 </script>

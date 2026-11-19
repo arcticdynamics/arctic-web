@@ -11,6 +11,16 @@ export function isValidEmail(email) {
   return email.length > 0 && email.length <= 254 && EMAIL_RE.test(email);
 }
 
+// Ad soyad: bosluklar sadelestirilir; en az iki sozcuk (ad + soyad), her biri harf icermeli, toplam 3-100 karakter.
+export function normalizeName(value) {
+  return String(value ?? '').normalize('NFC').replace(/\s+/g, ' ').trim();
+}
+
+export function isValidName(name) {
+  const parts = name.split(' ');
+  return name.length >= 3 && name.length <= 100 && parts.length >= 2 && parts.every((p) => /\p{L}/u.test(p));
+}
+
 // Ayni site disindan gelen istekleri reddet (basit CSRF/abuse korumasi).
 export function isSameOrigin(origin, host) {
   if (!origin) return true;

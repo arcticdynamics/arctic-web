@@ -1,7 +1,7 @@
 // POST /api/subscribe  { email, website }
 // Mail GONDERILMEZ. E-posta dogrudan bekleme listesine (Postgres) yazilir.
 import { getSql, ensureSchema } from '../lib/db.js';
-import { normalizeEmail, isValidEmail, isSameOrigin, clientIp, ipHash } from '../lib/validate.js';
+import { normalizeEmail, isValidEmail, normalizeName, isValidName, isSameOrigin, clientIp, ipHash } from '../lib/validate.js';
 
 const json = (res, status, data) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -20,6 +20,10 @@ export default async function handler(req, res) {
 
   // Honeypot: botlar bu gizli alani doldurur. Sessizce basarili gibi davran.
   if (input.website) return json(res, 200, { ok: true });
+
+  const tester = input.tester === true; // "Tester olmak ister misiniz" formundan geldi mi
+  const fullName = normalizeName(input.fullName);
+  if (!isValidName(fullName)) return json(res, 422, { ok: false, error: 'invalid_name' });
 
   const email = normalizeEmail(input.email);
   if (!isValidEmail(email)) return json(res, 422, { ok: false, error: 'invalid_email' });
@@ -51,7 +55,8 @@ export default async function handler(req, res) {
     // Zaten kayitliysa da ayni basarili cevap verilir (liste sizdirilmaz).
     // Saklama suresi: gizlilik metnindeki gibi 12 ay sonra silinir.
     await sql`DELETE FROM waitlist WHERE created_at < now() - interval '12 months'`;
-    await sql`INSERT INTO waitlist (email, consent_at) VALUES (${email}, now()) ON CONFLICT (email) DO NOTHING`;
+    await sql`INSERT INTO waitlist (email, full_name, is_tester, consent_at) VALUES (${email}, ${fullName}, ${tester}, now())
+      ON CONFLICT (email) DO UPDATE SET is_tester = waitlist.is_tester OR EXCLUDED.is_tester`;
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('waitlist subscribe:', err.message);

@@ -20,25 +20,27 @@ export default async function handler(req, res) {
 
   try {
     await ensureSchema();
-    const rows = await getSql()`SELECT email, created_at FROM waitlist ORDER BY id`;
+    const rows = await getSql()`SELECT full_name, email, is_tester, created_at FROM waitlist ORDER BY id`;
     const day = new Date().toISOString().slice(0, 10);
 
     if (req.query?.format === 'csv') {
-      const lines = rows.map((r) => `${csvCell(r.email)},${new Date(r.created_at).toISOString()}`);
+      const lines = rows.map((r) => `${csvCell(r.full_name ?? '')},${csvCell(r.email)},${r.is_tester ? 'yes' : 'no'},${new Date(r.created_at).toISOString()}`);
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', `attachment; filename="waitlist-${day}.csv"`);
-      return res.status(200).send('﻿email,created_at\n' + lines.join('\n'));
+      return res.status(200).send('﻿full_name,email,tester,created_at\n' + lines.join('\n'));
     }
 
     const wb = new ExcelJS.Workbook();
     const ws = wb.addWorksheet('Waitlist');
     ws.columns = [
+      { header: 'Ad Soyad', key: 'full_name', width: 32 },
       { header: 'Email', key: 'email', width: 42 },
+      { header: 'Tester', key: 'tester', width: 10 },
       { header: 'Kayit zamani (UTC)', key: 'created_at', width: 24, style: { numFmt: 'yyyy-mm-dd hh:mm' } },
     ];
     ws.getRow(1).font = { bold: true };
     // Hucreler string olarak yazilir; =, +, -, @ ile baslayan degerler formul olarak calismaz.
-    for (const r of rows) ws.addRow({ email: r.email, created_at: new Date(r.created_at) });
+    for (const r of rows) ws.addRow({ full_name: r.full_name ?? '', email: r.email, tester: r.is_tester ? 'Evet' : 'Hayir', created_at: new Date(r.created_at) });
 
     const buf = await wb.xlsx.writeBuffer();
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

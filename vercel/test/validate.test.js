@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeEmail, isValidEmail, isSameOrigin, ipHash, safeEqual, clientIp } from '../lib/validate.js';
+import { normalizeEmail, isValidEmail, normalizeName, isValidName, isSameOrigin, ipHash, safeEqual, clientIp } from '../lib/validate.js';
 
 test('e-posta normalize edilir ve dogrulanir', () => {
   assert.equal(normalizeEmail('  Ali@Ornek.COM '), 'ali@ornek.com');
@@ -32,4 +32,13 @@ test('safeEqual ve clientIp', () => {
   assert.equal(safeEqual('abc', 'abcd'), false);
   assert.equal(clientIp({ headers: { 'x-forwarded-for': '9.9.9.9, 1.1.1.1' } }), '9.9.9.9');
   assert.equal(clientIp({ headers: {} }), 'unknown');
+});
+
+test('ad soyad normalize edilir ve dogrulanir', () => {
+  assert.equal(normalizeName('  Ayşe   Yılmaz '), 'Ayşe Yılmaz');
+  assert.ok(isValidName('Ayşe Yılmaz'));
+  assert.ok(isValidName('Jo Li'));
+  for (const bad of ['', ' ', 'A', 'Ayşe', '1234 5678', '!! ??', 'a b'.repeat(40)]) {
+    assert.equal(isValidName(normalizeName(bad)), false, bad);
+  }
 });

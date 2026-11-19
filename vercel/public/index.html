@@ -36,6 +36,8 @@
     @media(max-width:900px){.coming-soon{min-height:0}.coming-inner{grid-template-columns:1fr 1fr;gap:22px}.hourglass-stage{height:520px}.hourglass-caption{left:-4px}.coming-soon h2{font-size:clamp(50px,7vw,72px)}}
     @media(max-width:700px){.coming-soon{min-height:0;padding:88px 0 78px}.coming-inner{grid-template-columns:1fr;gap:14px}.coming-copy-block{max-width:unset}.coming-star{margin-bottom:17px}.coming-soon h2{font-size:clamp(48px,13vw,70px);margin:17px 0 20px}.coming-soon .coming-copy{font-size:15px;max-width:500px}.hourglass-cta{margin-top:25px}.hourglass-note{margin-top:22px!important;font-size:8px!important}.hourglass-stage{width:min(100%,390px);height:440px;margin:-5px auto -8px}.hourglass-svg{width:min(100%,300px)}.hourglass-caption{left:0;top:35%;font-size:8px}.hourglass-caption:after{width:26px;margin-left:6px}}
     @media(prefers-reduced-motion:reduce){.upper-particle,.lower-particle,.falling-particle{animation:none!important;opacity:1!important}}
+    .tester{position:relative;padding:112px 0 120px;overflow:hidden;background:radial-gradient(ellipse at 20% 50%,rgba(0,130,161,.14),transparent 65%)}.tester-row{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.tester .section-title{font-size:clamp(38px,4.5vw,58px)}.tester p{max-width:460px;color:var(--muted);font-size:16px;line-height:1.8}.tester .cta{margin-top:30px}.tester-points{list-style:none;margin:0;padding:0;display:grid;gap:18px}.tester-points li{border-left:1px solid var(--cyan);padding:6px 0 6px 20px;color:var(--ink);font-size:15px;letter-spacing:.02em}.tester-points li span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    @media(max-width:700px){.tester{padding:84px 0 90px}.tester-row{grid-template-columns:1fr;gap:34px}.tester .section-title{font-size:43px}.tester p{font-size:14px}}
   </style>
 </head>
 <body>
@@ -88,23 +90,6 @@
       </div>
     </section>
 
-    <section class="product-story">
-      <div class="wrap story-grid">
-        <div class="story-copy"><div class="eyebrow">The developer workspace</div><h2 class="section-title">A clear view of the work.</h2><p>Arctic is being shaped as a desktop experience for coding tasks: understand the request, make a plan, work in a controlled local environment, and inspect the result.</p><p class="muted">Interface shown is a product concept.</p></div>
-        <div>
-          <div class="workspace" role="img" aria-label="Illustrative Arctic developer workspace showing a task, plan, code editor and local run results">
-            <div class="workspace-head"><span>✦ &nbsp; ARCTIC / TASK WORKSPACE</span><span class="runtime">● &nbsp; LOCAL RUNTIME</span></div>
-            <div class="workspace-grid">
-              <div class="workspace-nav"><span>▷ &nbsp; Agent</span><span>⑂ &nbsp; Changes &nbsp; 3</span><span>♧ &nbsp; Tests &nbsp; ✓</span><span>◷ &nbsp; History</span></div>
-              <div class="workspace-task"><p class="mini-label">Task</p><strong>Add usage tracking for the API and include tests.</strong><div class="plan-list"><p class="mini-label">Visible plan</p><span><i>✓</i> Scan codebase</span><span><i>✓</i> Implement tracking</span><span><i>✓</i> Run tests locally</span></div></div>
-              <div class="workspace-editor"><div class="code-title">◉ &nbsp; usage_tracking.py</div><span class="code-cyan">01  from typing import Dict, Any</span><br>02<br><span class="code-purple">03  class UsageTracker:</span><br>04      def __init__(self):<br>05          self.events = []<br>06<br><span class="code-purple">07  def record(self, event, data):</span><br>08      self.events.append({<br>09          "event": event,<br>10          "data": data<br>11      })</div>
-              <div class="workspace-run"><h4>▷ &nbsp; RUN &amp; VERIFY</h4><div class="run-result"><b>✓</b> Work locally<small>Completed · 12s</small></div><div class="run-result"><b>✓</b> Run tests<small>12 passed · 4.8s</small></div><div class="run-result"><b>✓</b> Prepare changes<small>3 files modified</small></div><button type="button" class="cta" data-open-modal>Review changes →</button></div>
-            </div>
-          </div>
-          <div class="below-workspace"><span>Set scope</span><span>Work locally</span><span>Review changes</span></div>
-        </div>
-      </div>
-    </section>
 
     <section class="security" id="security">
       <img class="security-visual" src="assets/visuals/secure-device.jpg" alt="Developer laptop and local storage device, from the Arctic presentation">
@@ -148,6 +133,22 @@
       <div class="wrap ecosystem-row"><div><div class="eyebrow">An open ecosystem</div><h2 class="section-title">Keep the tools<br><span>you already use.</span></h2><p>Arctic is designed around the models, tools and workflows developers choose—so the experience can adapt to the work.</p></div><img class="ecosystem-visual" src="assets/visuals/tools.jpg" alt="AI and coding tools shown in the Arctic presentation"></div>
     </section>
 
+    <section class="tester" id="tester" aria-labelledby="testerTitle">
+      <div class="wrap tester-row">
+        <div>
+          <div class="eyebrow">Join the testing</div>
+          <h2 class="section-title" id="testerTitle">Help us build<br><span>what comes next.</span></h2>
+          <p>We are looking for people who want to try early versions of Arctic and tell us what works and what doesn’t. Sign up as a tester and we’ll reach out when testing begins.</p>
+          <button class="cta" type="button" data-open-modal="tester">Become a tester <span aria-hidden="true">→</span></button>
+        </div>
+        <ul class="tester-points">
+          <li>Try early versions<span>Be among the first to use Arctic.</span></li>
+          <li>Share honest feedback<span>Tell us what works and what doesn’t.</span></li>
+          <li>Help shape Arctic<span>Your input guides what we build next.</span></li>
+        </ul>
+      </div>
+    </section>
+
     <section class="final-cta" id="waitlist"><div class="wrap"><div class="eyebrow">Arctic Dynamics</div><h2 class="section-title">AI that works<br><span>on your terms.</span></h2><p>Follow Arctic’s progress and be among the first to hear about early access.</p><button class="cta" type="button" data-open-modal>Join the waitlist <span aria-hidden="true">→</span></button></div></section>
     <section class="coming-soon" id="coming-soon" aria-labelledby="comingTitle">
       <div class="wrap coming-inner">
@@ -157,8 +158,7 @@
           <h2 id="comingTitle">Arctic is<br><span>coming soon.</span></h2>
           <p class="coming-copy">A new way to work with AI is on the horizon. Join the waitlist and we’ll let you know when Arctic is ready to meet you.</p>
           <button class="outline hourglass-cta" type="button" data-open-modal>Get early access <span aria-hidden="true">→</span></button>
-          <p class="hourglass-note">A little more time&nbsp; · &nbsp;A lot more possibility</p>
-        </div>
+          <p class="hourglass-note">A little more time&nbsp; · &nbsp;A lot more possibility</p>        </div>
         <div class="hourglass-stage" role="img" aria-label="A glowing glass hourglass filled with separate particles. Grains flow through the narrow neck and gather loosely at the bottom.">
           <span class="hourglass-caption" aria-hidden="true">Sand in motion</span>
           <svg class="hourglass-svg" viewBox="0 0 360 610" aria-hidden="true">
@@ -176,7 +176,8 @@
             if(!svg)return;
             const upper=svg.querySelector('#upperSand'),flow=svg.querySelector('#fallingSand'),lower=svg.querySelector('#lowerSand');
             if(!upper||!flow||!lower)return;
-            const grains=[...upper.querySelectorAll('.upper-particle')].map(node=>({node,x:+node.getAttribute('cx'),y:+node.getAttribute('cy'),r:+node.getAttribute('r')||1.7}));
+            const buildGrains=()=>[...upper.querySelectorAll('.upper-particle')].map(node=>({node,x:+node.getAttribute('cx'),y:+node.getAttribute('cy'),r:+node.getAttribute('r')||1.7}));
+            let grains=buildGrains();
             if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
             const ns='http://www.w3.org/2000/svg';let started=false;
             // Arrange grains in shallow, widening rows so the collected sand fills the lower floor.
@@ -198,6 +199,9 @@
               depositSlots.push({x,y});
             }
             depositSlots.sort((a,b)=>b.y-a.y);
+            // Endless, seamless loop: grains keep falling; settled grains quietly fade out at the bottom
+            // while the same grain fades back in at the top, so the flow never visibly "ends".
+            const STEP=135,FALL=2820,HOLD=3000;
             function run(){
               if(started)return;started=true;
               const initial=[...lower.querySelectorAll('.lower-particle')];
@@ -205,19 +209,31 @@
                 if(index>=16){node.remove();return}
                 const slot=depositSlots[index];node.setAttribute('cx',String(slot.x));node.setAttribute('cy',String(slot.y));
               });
-              const start=performance.now(),active=[];
+              const WAIT=grains.length*STEP-FALL-HOLD;
+              const taken=depositSlots.map((_,i)=>i<16);
+              // Prefer the lowest free slots (slots are sorted floor-first) so the pile stays natural.
+              const pickSlot=()=>{const free=[];for(let i=0;i<taken.length;i++)if(!taken[i])free.push(i);if(!free.length)return -1;const i=free[Math.floor(Math.random()*Math.min(10,free.length))];taken[i]=true;return i};
+              grains.forEach((g,i)=>{g.state='wait';g.startAt=i*STEP});
+              const active=[];let clock=0,last=null;
               function frame(now){
-                const elapsed=now-start;
-                grains.forEach((grain,index)=>{
-                  const delay=index*135;
-                  if(!grain.moving&&elapsed>=delay){
-                    grain.moving=true;grain.depositIndex=16+index;const landing=depositSlots[grain.depositIndex];grain.landX=landing.x;grain.landY=landing.y;grain.driftPhase=Math.random()*Math.PI*2;grain.driftWidth=2.5+Math.random()*4.5;grain.driftRate=5+Math.random()*4;grain.node.style.animation='none';grain.node.style.transition='opacity 180ms ease-out';grain.node.style.opacity='0';
+                if(last===null)last=now;
+                clock+=Math.min(now-last,100);last=now; // clamp so a background tab never causes a burst
+                grains.forEach(grain=>{
+                  if(grain.state==='wait'&&clock>=grain.startAt){
+                    const s=pickSlot();if(s<0)return;
+                    grain.state='fall';grain.slot=s;const landing=depositSlots[s];grain.landX=landing.x;grain.landY=landing.y;grain.driftPhase=Math.random()*Math.PI*2;grain.driftWidth=2.5+Math.random()*4.5;grain.driftRate=5+Math.random()*4;grain.node.style.animation='none';grain.node.style.transition='opacity 180ms ease-out';grain.node.style.opacity='0';
                     const dot=document.createElementNS(ns,'circle');dot.setAttribute('class','falling-particle');dot.setAttribute('r',String(grain.r));dot.setAttribute('cx',String(grain.x));dot.setAttribute('cy',String(grain.y));flow.appendChild(dot);
-                    grain.dot=dot;grain.motionStart=start+delay;active.push(grain);
+                    grain.dot=dot;grain.motionStart=clock;active.push(grain);
+                  }else if(grain.state==='hold'&&clock>=grain.recycleAt){
+                    const settled=grain.settled,node=grain.node,slot=grain.slot;
+                    grain.state='wait';grain.startAt=clock+WAIT;
+                    settled.style.animation='none';settled.style.transition='opacity 900ms ease';settled.style.opacity='0';
+                    node.style.animation='none';node.style.transition='opacity 900ms ease';node.style.opacity='1';
+                    setTimeout(()=>{settled.remove();taken[slot]=false;node.style.transition='';node.style.opacity='';node.style.animation=''},950);
                   }
                 });
                 for(let i=active.length-1;i>=0;i--){
-                  const g=active[i],t=(now-g.motionStart)/1000,dot=g.dot;let x,y,opacity=1;
+                  const g=active[i],t=(clock-g.motionStart)/1000,dot=g.dot;let x,y,opacity=1;
                   if(t<.9){const p=Math.max(0,t/.9),ease=p*p*(3-2*p);x=g.x+(180-g.x)*ease;y=g.y+(283-g.y)*ease;opacity=Math.min(1,p*4)}
                   else if(t<1.2){
                     // Keep grains inside the narrow neck until they have passed into the lower bulb.
@@ -233,11 +249,12 @@
                   else if(t<2.82){
                     const p=(t-2.45)/.37,ease=p*p*(3-2*p);y=g.landY-g.r*1.5*(1-ease);x=g.landX+Math.sin(g.driftPhase)*1.5*(1-ease);
                   }else{
-                    dot.remove();const settled=document.createElementNS(ns,'circle');settled.setAttribute('class','lower-particle');settled.setAttribute('cx',String(g.landX));settled.setAttribute('cy',String(g.landY));settled.setAttribute('r',String(g.r));lower.appendChild(settled);active.splice(i,1);continue;
+                    dot.remove();const settled=document.createElementNS(ns,'circle');settled.setAttribute('class','lower-particle');settled.setAttribute('cx',String(g.landX));settled.setAttribute('cy',String(g.landY));settled.setAttribute('r',String(g.r));lower.appendChild(settled);
+                    g.settled=settled;g.state='hold';g.recycleAt=clock+HOLD;active.splice(i,1);continue;
                   }
                   dot.setAttribute('cx',String(x));dot.setAttribute('cy',String(y));dot.setAttribute('opacity',String(opacity));
                 }
-                if(active.length||elapsed<(grains.length-1)*135+3000)requestAnimationFrame(frame);
+                requestAnimationFrame(frame);
               }
               requestAnimationFrame(frame);
             }
@@ -249,11 +266,11 @@
     </section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#top" aria-label="Arctic Dynamics, back to top"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><span>Local by design · Human controlled</span><a href="/privacy.html">Privacy Notice</a><a href="#top">Back to top ↑</a></div></footer>
-  <div class="modal-backdrop" id="waitlistModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalIntro"><button class="modal-close" type="button" data-close-modal aria-label="Close waitlist form">×</button><a class="brand" href="#top" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><h2 id="modalTitle">Get early <span>access.</span></h2><p id="modalIntro">Be among the first to try Arctic.</p><form class="email-form" id="waitlistForm"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" maxlength="254" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="consent"><input type="checkbox" name="consent" required> <span>I agree to my email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a>.</span></label><button type="submit" id="waitlistSubmit">Join the waitlist</button></form><p class="privacy-note">This is a preview site. We only save your email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.</p><p class="form-success" id="formSuccess" role="status" aria-live="polite"></p></section></div>
+  <div class="modal-backdrop" id="waitlistModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalIntro"><button class="modal-close" type="button" data-close-modal aria-label="Close waitlist form">×</button><a class="brand" href="#top" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><h2 id="modalTitle">Get early <span>access.</span></h2><p id="modalIntro">Be among the first to try Arctic.</p><form class="email-form" id="waitlistForm"><label for="fullName">Full name</label><input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First and last name" maxlength="100" pattern=" *[^ ]+ +[^ ].*" required><label for="email" style="margin-top:14px">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" maxlength="254" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="consent"><input type="checkbox" name="consent" required> <span id="consentText">I agree to my name and email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a>.</span></label><button type="submit" id="waitlistSubmit">Join the waitlist</button></form><p class="privacy-note" id="privacyNote">This is a preview site. We only save your name and email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.</p><p class="form-success" id="formSuccess" role="status" aria-live="polite"></p></section></div>
   <script>
     (()=>{
 
-      const modal=document.getElementById('waitlistModal'),email=modal.querySelector('input'),menu=document.getElementById('navLinks'),toggle=document.getElementById('menuToggle');let previousFocus=null;function openModal(){previousFocus=document.activeElement;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>email.focus(),0)}function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus)previousFocus.focus()}document.querySelectorAll('[data-open-modal]').forEach(button=>button.addEventListener('click',openModal));modal.querySelector('[data-close-modal]').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))closeModal()});const vmsg={email:v=>v.valueMissing?'Please enter your email address.':'Please enter a valid email address.',consent:()=>'Please tick this box to continue.'};['email','consent'].forEach(n=>{const el=document.getElementById('waitlistForm').elements[n];el.addEventListener('invalid',()=>el.setCustomValidity(vmsg[n](el.validity)));['input','change'].forEach(ev=>el.addEventListener(ev,()=>el.setCustomValidity('')))});document.getElementById('waitlistForm').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget,btn=document.getElementById('waitlistSubmit'),msg=document.getElementById('formSuccess'),label=btn.textContent;const show=(t,err)=>{msg.textContent=t;msg.style.color=err?'#ff9a9a':'#69e3b0';msg.style.display='block'};btn.disabled=true;btn.textContent='Sending…';msg.style.display='none';try{const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:form.email.value,website:form.website.value,consent:form.consent.checked})});const data=await res.json().catch(()=>({}));if(res.ok&&data.ok){show('You\'re on the waitlist!');form.reset()}else if(data.error==='invalid_email'){show('Please enter a valid email address.',true)}else if(data.error==='consent_required'){show('Please tick the consent box to join.',true)}else if(data.error==='rate_limited'){show('Too many attempts. Please try again later.',true)}else{show('Something went wrong. Please try again.',true)}}catch(e){show('Could not connect. Please check your connection and try again.',true)}finally{btn.disabled=false;btn.textContent=label}});toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));})();
+      const modal=document.getElementById('waitlistModal'),email=modal.querySelector('input'),menu=document.getElementById('navLinks'),toggle=document.getElementById('menuToggle');let previousFocus=null;const PN='<a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a>';const MODES={waitlist:{title:'Get early <span>access.</span>',intro:'Be among the first to try Arctic.',btn:'Join the waitlist',consent:'I agree to my name and email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the '+PN+'.',note:'This is a preview site. We only save your name and email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.'},tester:{title:'Become a <span>tester.</span>',intro:'Help shape Arctic by trying early versions and sharing feedback.',btn:'Sign up as a tester',consent:'I agree to my name and email being stored for the tester programme and the waitlist, to being contacted about testing, and to the transfer abroad (Vercel, Neon), as described in the '+PN+'.',note:'We only save your name and email address and will email you only about testing. A hashed IP is kept for 24 hours to prevent abuse.'}};function openModal(tester){previousFocus=document.activeElement;const m=MODES[tester?'tester':'waitlist'];modal.dataset.mode=tester?'tester':'waitlist';document.getElementById('modalTitle').innerHTML=m.title;document.getElementById('modalIntro').textContent=m.intro;document.getElementById('waitlistSubmit').textContent=m.btn;document.getElementById('consentText').innerHTML=m.consent;document.getElementById('privacyNote').textContent=m.note;document.getElementById('formSuccess').style.display='none';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>email.focus(),0)}function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus)previousFocus.focus()}document.querySelectorAll('[data-open-modal]').forEach(button=>button.addEventListener('click',()=>openModal(button.dataset.openModal==='tester')));modal.querySelector('[data-close-modal]').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))closeModal()});const vmsg={fullName:()=>'Please enter your first and last name.',email:v=>v.valueMissing?'Please enter your email address.':'Please enter a valid email address.',consent:()=>'Please tick this box to continue.'};['fullName','email','consent'].forEach(n=>{const el=document.getElementById('waitlistForm').elements[n];el.addEventListener('invalid',()=>el.setCustomValidity(vmsg[n](el.validity)));['input','change'].forEach(ev=>el.addEventListener(ev,()=>el.setCustomValidity('')))});document.getElementById('waitlistForm').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget,btn=document.getElementById('waitlistSubmit'),msg=document.getElementById('formSuccess'),label=btn.textContent;const show=(t,err)=>{msg.textContent=t;msg.style.color=err?'#ff9a9a':'#69e3b0';msg.style.display='block'};btn.disabled=true;btn.textContent='Sending…';msg.style.display='none';try{const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:form.fullName.value,email:form.email.value,website:form.website.value,consent:form.consent.checked,tester:modal.dataset.mode==='tester'})});const data=await res.json().catch(()=>({}));if(res.ok&&data.ok){show(modal.dataset.mode==='tester'?'Thanks! You\'re on the tester list.':'You\'re on the waitlist!');form.reset()}else if(data.error==='invalid_name'){show('Please enter your first and last name.',true)}else if(data.error==='invalid_email'){show('Please enter a valid email address.',true)}else if(data.error==='consent_required'){show('Please tick the consent box to join.',true)}else if(data.error==='rate_limited'){show('Too many attempts. Please try again later.',true)}else{show('Something went wrong. Please try again.',true)}}catch(e){show('Could not connect. Please check your connection and try again.',true)}finally{btn.disabled=false;btn.textContent=label}});toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));})();
   </script>
 </body>
 </html>
