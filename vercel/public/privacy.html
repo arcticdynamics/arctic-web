@@ -15,16 +15,23 @@ h3{font-size:1rem;margin:22px 0 6px}
 p,li{color:var(--muted)}
 a{color:var(--cyan)}
 .meta{font-size:.85rem}
-.lang{display:flex;gap:16px;margin:16px 0 0}
+.lang{display:flex;gap:8px;margin:16px 0 24px}
+.lang button{font:inherit;font-size:.85rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <main>
 <p><a href="/">&larr; Back to site</a></p>
-<h1>Privacy Notice</h1>
-<p class="meta">Last updated: 19 November 2026 · <a href="#tr">Türkçe sürüm için tıklayın</a></p>
+<div class="lang" role="group" aria-label="Language">
+<button type="button" data-lang="en" aria-pressed="true">English</button>
+<button type="button" data-lang="tr" aria-pressed="false">Türkçe</button>
+</div>
 
-<h2 id="en">English</h2>
+<section id="en" lang="en">
+<h1>Privacy Notice</h1>
+<p class="meta">Last updated: 19 November 2026</p>
 
 <h3>Who we are (data controller)</h3>
 <p>The Arctic Dynamics project team (we are not yet a registered company). This notice is provided under Article 10 of the Turkish Personal Data Protection Law No. 6698 (KVKK). Contact: <a href="mailto:[EMAIL]">[EMAIL]</a></p>
@@ -51,7 +58,11 @@ a{color:var(--cyan)}
 <h3>Deletion requests</h3>
 <p>To have your email removed, write to <a href="mailto:[EMAIL]">[EMAIL]</a> from the address you signed up with, or tell us which address to delete. We will delete it and confirm by email within 30 days at the latest.</p>
 
-<h2 id="tr">Türkçe</h2>
+</section>
+
+<section id="tr" lang="tr" hidden>
+<h1>Aydınlatma Metni</h1>
+<p class="meta">Son güncelleme: 19 Kasım 2026</p>
 
 <h3>Veri sorumlusu</h3>
 <p>Arctic Dynamics proje ekibi (henüz tescilli bir şirket değiliz). Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun (KVKK) 10. maddesi kapsamında aydınlatma yükümlülüğümüz gereği hazırlanmıştır. İletişim: <a href="mailto:[EMAIL]">[EMAIL]</a></p>
@@ -77,6 +88,21 @@ a{color:var(--cyan)}
 
 <h3>Silme talebi</h3>
 <p>E-postanızın silinmesi için kayıt olduğunuz adresten <a href="mailto:[EMAIL]">[EMAIL]</a> adresine yazabilir ya da silinecek adresi belirtebilirsiniz. Talebinizi en geç 30 gün içinde sonuçlandırır ve e-posta ile bilgilendiririz.</p>
+</section>
 </main>
+<script>
+(function(){
+  var secs={en:document.getElementById('en'),tr:document.getElementById('tr')},btns=document.querySelectorAll('[data-lang]');
+  function set(l){
+    if(!secs[l])l='en';
+    for(var k in secs)secs[k].hidden=(k!==l);
+    document.documentElement.lang=l;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l))});
+    document.title=l==='tr'?'Aydınlatma Metni – Arctic Dynamics':'Privacy Notice – Arctic Dynamics';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.lang);history.replaceState(null,'','#'+b.dataset.lang)})});
+  set(location.hash==='#tr'?'tr':'en');
+})();
+</script>
 </body>
 </html>
