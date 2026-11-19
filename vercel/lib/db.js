@@ -23,6 +23,8 @@ export async function ensureSchema() {
         email VARCHAR(254) NOT NULL UNIQUE,
         created_at TIMESTAMPTZ NOT NULL DEFAULT now()
       )`;
+      // Acik riza kaniti (KVKK): rizanin verildigi an.
+      await q`ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS consent_at TIMESTAMPTZ`;
       await q`CREATE TABLE IF NOT EXISTS waitlist_attempts (
         id SERIAL PRIMARY KEY,
         ip_hash CHAR(64) NOT NULL,

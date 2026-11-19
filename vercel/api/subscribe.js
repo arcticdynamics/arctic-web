@@ -24,6 +24,9 @@ export default async function handler(req, res) {
   const email = normalizeEmail(input.email);
   if (!isValidEmail(email)) return json(res, 422, { ok: false, error: 'invalid_email' });
 
+  // KVKK: acik riza zorunlu. Sunucu tarafinda da dogrulanir (form atlatilsa bile kayit olmaz).
+  if (input.consent !== true) return json(res, 422, { ok: false, error: 'consent_required' });
+
   try {
     await ensureSchema();
     const sql = getSql();
@@ -46,7 +49,9 @@ export default async function handler(req, res) {
     }
 
     // Zaten kayitliysa da ayni basarili cevap verilir (liste sizdirilmaz).
-    await sql`INSERT INTO waitlist (email) VALUES (${email}) ON CONFLICT (email) DO NOTHING`;
+    // Saklama suresi: gizlilik metnindeki gibi 12 ay sonra silinir.
+    await sql`DELETE FROM waitlist WHERE created_at < now() - interval '12 months'`;
+    await sql`INSERT INTO waitlist (email, consent_at) VALUES (${email}, now()) ON CONFLICT (email) DO NOTHING`;
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('waitlist subscribe:', err.message);
