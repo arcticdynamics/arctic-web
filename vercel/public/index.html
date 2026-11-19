@@ -37,6 +37,8 @@
     @media(max-width:700px){.coming-soon{min-height:0;padding:88px 0 78px}.coming-inner{grid-template-columns:1fr;gap:14px}.coming-copy-block{max-width:unset}.coming-star{margin-bottom:17px}.coming-soon h2{font-size:clamp(48px,13vw,70px);margin:17px 0 20px}.coming-soon .coming-copy{font-size:15px;max-width:500px}.hourglass-cta{margin-top:25px}.hourglass-note{margin-top:22px!important;font-size:8px!important}.hourglass-stage{width:min(100%,390px);height:440px;margin:-5px auto -8px}.hourglass-svg{width:min(100%,300px)}.hourglass-caption{left:0;top:35%;font-size:8px}.hourglass-caption:after{width:26px;margin-left:6px}}
     @media(prefers-reduced-motion:reduce){.upper-particle,.lower-particle,.falling-particle{animation:none!important;opacity:1!important}}
     .tester{position:relative;padding:112px 0 120px;overflow:hidden;background:radial-gradient(ellipse at 20% 50%,rgba(0,130,161,.14),transparent 65%)}.tester-row{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.tester .section-title{font-size:clamp(38px,4.5vw,58px)}.tester p{max-width:460px;color:var(--muted);font-size:16px;line-height:1.8}.tester .cta{margin-top:30px}.tester-points{list-style:none;margin:0;padding:0;display:grid;gap:18px}.tester-points li{border-left:1px solid var(--cyan);padding:6px 0 6px 20px;color:var(--ink);font-size:15px;letter-spacing:.02em}.tester-points li span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    .nav-tester-link{display:none}.nav-tester{margin-left:auto;margin-right:10px}
+    @media(max-width:700px){.nav-tester-link{display:inline}}
     @media(max-width:700px){.tester{padding:84px 0 90px}.tester-row{grid-template-columns:1fr;gap:34px}.tester .section-title{font-size:43px}.tester p{font-size:14px}}
   </style>
 </head>
@@ -44,7 +46,8 @@
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="Arctic Dynamics home"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a>
-      <div class="nav-links" id="navLinks"><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#security">Security</a><a href="#about">About</a></div>
+      <div class="nav-links" id="navLinks"><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#security">Security</a><a href="#about">About</a><a class="nav-tester-link" href="#tester">Become a tester</a></div>
+      <button class="outline nav-cta nav-tester" type="button" data-open-modal="tester">Become a tester</button>
       <button class="outline nav-cta" type="button" data-open-modal>Join waitlist</button>
       <button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">Menu</button>
     </nav>
