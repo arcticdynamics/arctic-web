@@ -1,6 +1,6 @@
 // GET /api/export  -> waitlist.xlsx (Excel'de acilir)
 // Yetki: "Authorization: Bearer <ADMIN_TOKEN>" basligi veya ?token=<ADMIN_TOKEN>
-// CSV icin: ?format=csv
+// Excel: iki sekme (Waitlist, Testers). CSV icin: ?format=csv (&list=testers veya &list=waitlist)
 import ExcelJS from 'exceljs';
 import { getSql, ensureSchema } from '../lib/db.js';
 import { safeEqual } from '../lib/validate.js';
@@ -23,24 +23,36 @@ export default async function handler(req, res) {
     const rows = await getSql()`SELECT full_name, email, is_tester, created_at FROM waitlist ORDER BY id`;
     const day = new Date().toISOString().slice(0, 10);
 
+    // Tester olarak kaydolanlar ayri listede; sadece bekleme listesine yazilanlar ayri.
+    const testers = rows.filter((r) => r.is_tester);
+    const waiters = rows.filter((r) => !r.is_tester);
+
     if (req.query?.format === 'csv') {
-      const lines = rows.map((r) => `${csvCell(r.full_name ?? '')},${csvCell(r.email)},${r.is_tester ? 'yes' : 'no'},${new Date(r.created_at).toISOString()}`);
+      // ?list=testers | ?list=waitlist ; verilmezse hepsi (tester sutunuyla)
+      const list = req.query?.list;
+      const picked = list === 'testers' ? testers : list === 'waitlist' ? waiters : rows;
+      const lines = picked.map((r) => `${csvCell(r.full_name ?? '')},${csvCell(r.email)},${r.is_tester ? 'yes' : 'no'},${new Date(r.created_at).toISOString()}`);
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-      res.setHeader('Content-Disposition', `attachment; filename="waitlist-${day}.csv"`);
+      res.setHeader('Content-Disposition', `attachment; filename="${list === 'testers' ? 'testers' : list === 'waitlist' ? 'waitlist' : 'all'}-${day}.csv"`);
       return res.status(200).send('﻿full_name,email,tester,created_at\n' + lines.join('\n'));
     }
 
+    // Excel: ayni dosyada iki sekme (sheet): "Waitlist" ve "Testers".
     const wb = new ExcelJS.Workbook();
-    const ws = wb.addWorksheet('Waitlist');
-    ws.columns = [
-      { header: 'Ad Soyad', key: 'full_name', width: 32 },
-      { header: 'Email', key: 'email', width: 42 },
-      { header: 'Tester', key: 'tester', width: 10 },
-      { header: 'Kayit zamani (UTC)', key: 'created_at', width: 24, style: { numFmt: 'yyyy-mm-dd hh:mm' } },
-    ];
-    ws.getRow(1).font = { bold: true };
-    // Hucreler string olarak yazilir; =, +, -, @ ile baslayan degerler formul olarak calismaz.
-    for (const r of rows) ws.addRow({ full_name: r.full_name ?? '', email: r.email, tester: r.is_tester ? 'Evet' : 'Hayir', created_at: new Date(r.created_at) });
+    const addSheet = (name, list) => {
+      const ws = wb.addWorksheet(name);
+      ws.columns = [
+        { header: 'Ad Soyad', key: 'full_name', width: 32 },
+        { header: 'Email', key: 'email', width: 42 },
+        { header: 'Kayit zamani (UTC)', key: 'created_at', width: 24, style: { numFmt: 'yyyy-mm-dd hh:mm' } },
+      ];
+      ws.getRow(1).font = { bold: true };
+      ws.views = [{ state: 'frozen', ySplit: 1 }];
+      // Hucreler string olarak yazilir; =, +, -, @ ile baslayan degerler formul olarak calismaz.
+      for (const r of list) ws.addRow({ full_name: r.full_name ?? '', email: r.email, created_at: new Date(r.created_at) });
+    };
+    addSheet('Waitlist', waiters);
+    addSheet('Testers', testers);
 
     const buf = await wb.xlsx.writeBuffer();
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
