@@ -18,6 +18,9 @@ const sheetSafe = (v) => (/^[=+\-@\t\r]/.test(v) ? `'${v}` : v);
 async function pushToSheet(payload) {
   const url = process.env.GOOGLE_SHEET_URL;
   if (!url) return;
+  // Ortak sir: Apps Script web uygulamasi herkese acik oldugu icin sahte istekleri bununla ayiklar.
+  const secret = process.env.SHEET_SECRET;
+  if (secret) payload = { ...payload, secret };
   try {
     const r = await fetch(url, {
       method: 'POST',
@@ -26,6 +29,11 @@ async function pushToSheet(payload) {
       signal: AbortSignal.timeout(5000),
     });
     if (!r.ok) console.error('sheet push status:', r.status);
+    else {
+      // Apps Script hatalari da 200 doner; sir uyusmazligi gibi sorunlari loga dusur.
+      const body = await r.json().catch(() => null);
+      if (body && body.ok === false) console.error('sheet push rejected:', body.error);
+    }
   } catch (err) {
     console.error('sheet push:', err.message);
   }
