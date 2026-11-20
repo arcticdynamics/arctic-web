@@ -42,7 +42,9 @@ async function pushToSheet(payload) {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'method_not_allowed' });
 
-  if (!isSameOrigin(req.headers.origin, req.headers.host)) {
+  // Sec-Fetch-Site'i tarayici koyar, sayfa kodu degistiremez. Baslik yoksa (eski tarayici,
+  // curl, uygulama ici tarayici) engellenmez; yalnizca acikca "cross-site" olan reddedilir.
+  if (req.headers['sec-fetch-site'] === 'cross-site' || !isSameOrigin(req.headers.origin, req.headers.host)) {
     return json(res, 403, { ok: false, error: 'forbidden' });
   }
 
