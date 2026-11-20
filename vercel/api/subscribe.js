@@ -71,7 +71,9 @@ export default async function handler(req, res) {
     const [{ n }] = await sql`
       SELECT COUNT(*)::int AS n FROM waitlist_attempts
       WHERE ip_hash = ${ip} AND created_at > now() - interval '1 hour'`;
-    if (n >= 5) return json(res, 429, { ok: false, error: 'rate_limited' });
+    // Etkinlik gibi ortak Wi-Fi (tek cikis IP'si) icin HOURLY_IP_LIMIT env'i ile yukseltilebilir.
+    const ipLimit = Number(process.env.HOURLY_IP_LIMIT ?? 5);
+    if (n >= ipLimit) return json(res, 429, { ok: false, error: 'rate_limited' });
     await sql`INSERT INTO waitlist_attempts (ip_hash) VALUES (${ip})`;
 
     // Genel gunluk tavan: toplu kayit istismarini sinirlar.
