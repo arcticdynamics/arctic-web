@@ -31,9 +31,12 @@ export function isSameOrigin(origin, host) {
   }
 }
 
+// Vercel'in kendi koydugu basliklar once gelir (istemci bunlari sahteleyemez); x-forwarded-for
+// yalnizca yerel gelistirme / baska bir proxy arkasi icin yedek.
 export function clientIp(req) {
-  const fwd = String(req.headers['x-forwarded-for'] ?? '').split(',')[0].trim();
-  return fwd || String(req.headers['x-real-ip'] ?? '') || 'unknown';
+  const h = req.headers;
+  const first = (v) => String(v ?? '').split(',')[0].trim();
+  return first(h['x-vercel-forwarded-for']) || first(h['x-real-ip']) || first(h['x-forwarded-for']) || 'unknown';
 }
 
 // IP duz saklanmaz; tuzlu hash. Salt zayifsa sessizce zayif hash uretme: hata ver.
