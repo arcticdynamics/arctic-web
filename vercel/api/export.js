@@ -1,5 +1,5 @@
 // GET /api/export  -> waitlist.xlsx (Excel'de acilir)
-// Yetki: "Authorization: Bearer <ADMIN_TOKEN>" basligi veya ?token=<ADMIN_TOKEN>
+// Yetki: yalnizca "Authorization: Bearer <ADMIN_TOKEN>" basligi (?token= desteklenmez)
 // Excel: iki sekme (Waitlist, Testers). CSV icin: ?format=csv (&list=testers veya &list=waitlist)
 import ExcelJS from 'exceljs';
 import { getSql, ensureSchema } from '../lib/db.js';
@@ -13,8 +13,8 @@ export default async function handler(req, res) {
   // Zayif/eksik token ile disa aktarma kapali: en az 32 karakter gerekir.
   const adminToken = process.env.ADMIN_TOKEN ?? '';
   const bearer = String(req.headers.authorization ?? '').replace(/^Bearer\s+/i, '');
-  const given = bearer || String(req.query?.token ?? '');
-  if (adminToken.length < 32 || !safeEqual(adminToken, given)) {
+  // ?token= kabul edilmez: URL'deki token tarayici gecmisine ve erisim loglarina yazilir.
+  if (adminToken.length < 32 || !bearer || !safeEqual(adminToken, bearer)) {
     return res.status(403).send('Forbidden');
   }
 

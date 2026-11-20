@@ -26,7 +26,7 @@ Her klasör kendi başına yayınlanabilir; biri diğerine bağımlı değildir.
 Tanıtım amaçlı sürümdür. Şirket/info maili olmadığı için **hiçbir e-posta gönderilmez**: ziyaretçi e-postasını girince kayıt veritabanına yazılır ve ekranda "Wishliste kaydedildiniz!" mesajı çıkar. Çift onay (confirm) adımı bu sürümde yoktur.
 
 - **Yayın:** Vercel'de projeyi bu repodan içe aktarın, **Root Directory** olarak `vercel/` seçin. Marketplace'ten **Neon (Postgres)** ekleyin (`DATABASE_URL` otomatik gelir). `SALT` ve `ADMIN_TOKEN` değişkenlerini [`vercel/.env.example`](vercel/.env.example) dosyasına göre Vercel panelinden girin.
-- **Excel çıktısı:** `https://<site>/api/export` adresine `Authorization: Bearer <ADMIN_TOKEN>` başlığıyla (ya da `?token=...`) istek atınca `waitlist-YYYY-MM-DD.xlsx` iner. CSV için `?format=csv` ekleyin.
+- **Excel çıktısı:** `https://<site>/api/export` adresine `Authorization: Bearer <ADMIN_TOKEN>` başlığıyla (`?token=` desteklenmez) istek atınca `waitlist-YYYY-MM-DD.xlsx` iner. CSV için `?format=csv` ekleyin.
 - **Yerel geliştirme:** `cd vercel && npm install && npx vercel dev` (`.env` dosyasını `.env.example`'dan oluşturun). Birim testleri: `npm test`.
 - Tablolar ilk kayıtta otomatik oluşur, elle SQL gerekmez.
 
