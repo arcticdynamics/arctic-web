@@ -9,6 +9,10 @@ const json = (res, status, data) => {
   return res.status(status).json(data);
 };
 
+// Formul enjeksiyonu savunmasi: =, +, -, @, TAB, CR ile baslayan degerlerin onune ' konur,
+// Sheets bunu metin olarak saklar (=HYPERLINK(...) gibi girdiler formul olarak calismaz).
+const sheetSafe = (v) => (/^[=+\-@\t\r]/.test(v) ? `'${v}` : v);
+
 // Apps Script web uygulamasina sunucudan POST atar. URL tarayiciya hic cikmaz.
 // text/plain: Apps Script JSON content-type'i sevmez (preflight). Sunucudan CORS sorunu yok.
 async function pushToSheet(payload) {
@@ -77,7 +81,7 @@ export default async function handler(req, res) {
       ON CONFLICT (email) DO UPDATE SET is_tester = waitlist.is_tester OR EXCLUDED.is_tester`;
 
     // Google Sheets'e kopya (opsiyonel). Basarisiz olsa da kullanicinin kaydi bozulmaz.
-    await pushToSheet({ email, name: fullName, type: tester ? 'tester' : 'waitlist' });
+    await pushToSheet({ email: sheetSafe(email), name: sheetSafe(fullName), type: tester ? 'tester' : 'waitlist' });
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('waitlist subscribe:', err.message);
