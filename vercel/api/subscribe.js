@@ -9,6 +9,24 @@ const json = (res, status, data) => {
   return res.status(status).json(data);
 };
 
+// Apps Script web uygulamasina sunucudan POST atar. URL tarayiciya hic cikmaz.
+// text/plain: Apps Script JSON content-type'i sevmez (preflight). Sunucudan CORS sorunu yok.
+async function pushToSheet(payload) {
+  const url = process.env.GOOGLE_SHEET_URL;
+  if (!url) return;
+  try {
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!r.ok) console.error('sheet push status:', r.status);
+  } catch (err) {
+    console.error('sheet push:', err.message);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'method_not_allowed' });
 
@@ -57,6 +75,9 @@ export default async function handler(req, res) {
     await sql`DELETE FROM waitlist WHERE created_at < now() - interval '12 months'`;
     await sql`INSERT INTO waitlist (email, full_name, is_tester, consent_at) VALUES (${email}, ${fullName}, ${tester}, now())
       ON CONFLICT (email) DO UPDATE SET is_tester = waitlist.is_tester OR EXCLUDED.is_tester`;
+
+    // Google Sheets'e kopya (opsiyonel). Basarisiz olsa da kullanicinin kaydi bozulmaz.
+    await pushToSheet({ email, name: fullName, type: tester ? 'tester' : 'waitlist' });
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('waitlist subscribe:', err.message);
