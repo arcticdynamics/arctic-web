@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#04111d">
-  <meta name="description" content="Arctic is a local-first coding agent that works in your environment, within your limits, with results you can review.">
-  <title>Arctic Dynamics — Your AI. Your device. Your rules.</title>
+  <meta name="description" content="Arctic; sizin ortamınızda, belirlediğiniz sınırlar içinde çalışan ve sonuçlarını inceleyebileceğiniz yerel öncelikli bir kodlama ajanıdır.">
+  <title>Arctic Dynamics — Yapay zekânız. Cihazınız. Kurallarınız.</title>
+  <link rel="alternate" hreflang="tr" href="/">
+  <link rel="alternate" hreflang="en" href="/?lang=en">
   <style>
     :root{--bg:#04111d;--bg2:#071c2a;--ink:#f2f7fa;--muted:#a9bdc8;--cyan:#31d7e9;--cyan2:#8beaf1;--line:rgba(106,184,202,.2);--max:1320px;--edge:clamp(24px,6.2vw,104px)}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(var(--max),calc(100% - var(--edge)*2));margin-inline:auto}.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan2);font-weight:650}.muted{color:var(--muted)}
@@ -39,131 +41,136 @@
     .tester{position:relative;padding:112px 0 120px;overflow:hidden;background:radial-gradient(ellipse at 20% 50%,rgba(0,130,161,.14),transparent 65%)}.tester-row{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.tester .section-title{font-size:clamp(38px,4.5vw,58px)}.tester p{max-width:460px;color:var(--muted);font-size:16px;line-height:1.8}.tester .cta{margin-top:30px}.tester-points{list-style:none;margin:0;padding:0;display:grid;gap:18px}.tester-points li{border-left:1px solid var(--cyan);padding:6px 0 6px 20px;color:var(--ink);font-size:15px;letter-spacing:.02em}.tester-points li span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
     .nav-tester-link{display:none}.nav-tester{margin-left:auto;margin-right:10px}
     @media(max-width:700px){.nav-tester-link{display:inline}}
+    .lang-switch{display:inline-flex;flex:none;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-left:-12px}.lang-switch button{background:transparent;border:0;color:#9db3be;font-size:11px;font-weight:650;letter-spacing:.12em;padding:9px 10px;transition:background .2s,color .2s}.lang-switch button:hover{color:var(--cyan2)}.lang-switch button[aria-pressed="true"]{background:rgba(40,211,229,.14);color:var(--cyan2)}.lang-switch button:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+    @media(max-width:700px){.lang-switch{margin-left:auto;margin-right:-14px}.lang-switch button{padding:8px 9px}}
+    .nav-links a,.nav-cta{white-space:nowrap}
+    @media(min-width:701px) and (max-width:1100px){.nav{gap:18px}.nav-links{gap:18px}.nav-tester{display:none}.nav-tester-link{display:inline}.nav-links{margin-left:auto}}
     @media(max-width:700px){.tester{padding:84px 0 90px}.tester-row{grid-template-columns:1fr;gap:34px}.tester .section-title{font-size:43px}.tester p{font-size:14px}}
   </style>
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Arctic Dynamics home"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a>
-      <div class="nav-links" id="navLinks"><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#security">Security</a><a href="#about">About</a><a class="nav-tester-link" href="#tester">Become a tester</a></div>
-      <button class="outline nav-cta nav-tester" type="button" data-open-modal="tester">Become a tester</button>
-      <button class="outline nav-cta" type="button" data-open-modal>Join waitlist</button>
-      <button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">Menu</button>
+    <nav class="nav" aria-label="Ana gezinme" data-i18n-attr="aria-label:navLabel">
+      <a class="brand" href="#top" aria-label="Arctic Dynamics ana sayfa" data-i18n-attr="aria-label:homeLabel"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a>
+      <div class="nav-links" id="navLinks"><a href="#platform" data-i18n="navPlatform">Platform</a><a href="#workflow" data-i18n="navHow">Nasıl çalışır</a><a href="#security" data-i18n="navSecurity">Güvenlik</a><a href="#about" data-i18n="navAbout">Hakkımızda</a><a class="nav-tester-link" href="#tester" data-i18n="becomeTester">Test kullanıcısı ol</a></div>
+      <button class="outline nav-cta nav-tester" type="button" data-open-modal="tester" data-i18n="becomeTester">Test kullanıcısı ol</button>
+      <button class="outline nav-cta" type="button" data-open-modal data-i18n="navWaitlist">Bekleme listesine katıl</button>
+      <div class="lang-switch" role="group" aria-label="Dil / Language"><button type="button" data-lang="tr" lang="tr" aria-pressed="true" title="Türkçe">TR</button><button type="button" data-lang="en" lang="en" aria-pressed="false" title="English">EN</button></div>
+      <button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menüyü aç" data-i18n-attr="aria-label:menuLabel" data-i18n="menu">Menü</button>
     </nav>
   </header>
   <main id="top">
     <section class="hero" aria-labelledby="heroTitle">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Local-first AI for developers</div>
-          <h1 id="heroTitle">Your AI.<br>Your device.<span>Your rules.</span></h1>
-          <p>A coding agent that plans, works and verifies changes in your environment—keeping the scope visible and the final decision yours.</p>
-          <div class="hero-actions"><button class="cta" type="button" data-open-modal>Join the waitlist <span aria-hidden="true">→</span></button><a class="outline" href="#platform">Explore Arctic <span aria-hidden="true">↓</span></a></div>
-          <div class="hero-note"><span class="pulse"></span> Local work · Visible limits · Reviewable results</div>
+          <div class="eyebrow" data-i18n="heroEyebrow">Geliştiriciler için yerel öncelikli yapay zekâ</div>
+          <h1 id="heroTitle" data-i18n="heroTitle">Yapay zekânız.<br>Cihazınız.<span>Kurallarınız.</span></h1>
+          <p data-i18n="heroText">Değişiklikleri sizin ortamınızda planlayan, uygulayan ve doğrulayan bir kodlama ajanı—kapsam her zaman görünür, son karar her zaman sizde.</p>
+          <div class="hero-actions"><button class="cta" type="button" data-open-modal data-i18n="joinWaitlistArrow">Bekleme listesine katıl <span aria-hidden="true">→</span></button><a class="outline" href="#platform" data-i18n="exploreArctic">Arctic’i keşfet <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-note"><span class="pulse"></span> <span data-i18n="heroNote">Yerel çalışma · Görünür sınırlar · İncelenebilir sonuçlar</span></div>
         </div>
-        <div class="hero-art" aria-label="Arctic Dynamics A mark with orbit and star"><span class="orbit-label top">Runs in your environment</span><img class="hero-mark" src="assets/arctic-mark.png" alt="Arctic Dynamics angular A logo, orbit and star"><span class="orbit-label bottom">Built around your rules</span></div>
+        <div class="hero-art" aria-label="Yörünge ve yıldızla Arctic Dynamics A logosu" data-i18n-attr="aria-label:heroArtLabel"><span class="orbit-label top" data-i18n="orbitTop">Sizin ortamınızda çalışır</span><img class="hero-mark" src="assets/arctic-mark.png" alt="Arctic Dynamics köşeli A logosu, yörünge ve yıldız" data-i18n-attr="alt:heroMarkAlt"><span class="orbit-label bottom" data-i18n="orbitBottom">Kurallarınıza göre tasarlandı</span></div>
       </div>
-      <a class="scroll-cue" href="#platform">Discover Arctic</a>
+      <a class="scroll-cue" href="#platform" data-i18n="discover">Arctic’i keşfedin</a>
     </section>
 
     <section class="manifesto" id="platform">
-      <img class="manifesto-visual" src="assets/visuals/environment.jpg" alt="A human hand reaching toward a digital globe, from the Arctic presentation">
+      <img class="manifesto-visual" src="assets/visuals/environment.jpg" alt="Dijital bir küreye uzanan insan eli, Arctic sunumundan" data-i18n-attr="alt:manifestoAlt">
       <div class="wrap manifesto-inner">
-        <div class="eyebrow">A different AI ecosystem</div>
-        <h2>AI should work<br>where <span>your work lives.</span></h2>
-        <p>Cloud-based AI can limit control, increase provider dependency and add recurring costs. Arctic brings optimized models, relevant project knowledge, tools and built-in checks together in a local-first system.</p>
-        <div class="manifesto-quote">Small models. The right tools. Your environment.</div>
+        <div class="eyebrow" data-i18n="manifestoEyebrow">Farklı bir yapay zekâ ekosistemi</div>
+        <h2 data-i18n="manifestoTitle">Yapay zekâ,<br><span>işinizin olduğu yerde</span> çalışmalı.</h2>
+        <p data-i18n="manifestoText">Bulut tabanlı yapay zekâ kontrolü kısıtlayabilir, sağlayıcıya bağımlılığı artırabilir ve sürekli maliyet yaratabilir. Arctic; optimize edilmiş modelleri, ilgili proje bilgisini, araçları ve yerleşik kontrolleri yerel öncelikli tek bir sistemde bir araya getirir.</p>
+        <div class="manifesto-quote" data-i18n="manifestoQuote">Küçük modeller. Doğru araçlar. Sizin ortamınız.</div>
       </div>
     </section>
 
     <section class="system" id="workflow">
       <div class="wrap">
         <div class="system-head">
-          <div><div class="eyebrow">One connected system</div><h2 class="section-title">From task to<br><span>verified result.</span></h2></div>
-          <p>Hand off everyday coding work. Arctic makes each step visible, works within the boundaries you set, and leaves the final review with you.</p>
+          <div><div class="eyebrow" data-i18n="systemEyebrow">Tek ve bağlantılı bir sistem</div><h2 class="section-title" data-i18n="systemTitle">Görevden<br><span>doğrulanmış sonuca.</span></h2></div>
+          <p data-i18n="systemText">Günlük kodlama işlerini devredin. Arctic her adımı görünür kılar, belirlediğiniz sınırlar içinde çalışır ve son incelemeyi size bırakır.</p>
         </div>
-        <div class="system-line" aria-label="Arctic workflow">
-          <article class="system-step"><span class="num">01</span><h3>Define the scope</h3><p>Set the goal, permissions and boundaries for the task.</p></article>
-          <article class="system-step"><span class="num">02</span><h3>Understand &amp; plan</h3><p>Read the codebase and make a plan you can inspect.</p></article>
-          <article class="system-step"><span class="num">03</span><h3>Work locally</h3><p>Use suitable models and tools in your environment.</p></article>
-          <article class="system-step"><span class="num">04</span><h3>Verify &amp; review</h3><p>Run checks, present the changes and keep approval in your hands.</p></article>
+        <div class="system-line" aria-label="Arctic iş akışı" data-i18n-attr="aria-label:workflowLabel">
+          <article class="system-step"><span class="num">01</span><h3 data-i18n="step1Title">Kapsamı belirleyin</h3><p data-i18n="step1Text">Görevin hedefini, izinlerini ve sınırlarını siz çizersiniz.</p></article>
+          <article class="system-step"><span class="num">02</span><h3 data-i18n="step2Title">Anlama ve planlama</h3><p data-i18n="step2Text">Kod tabanını okur ve inceleyebileceğiniz bir plan hazırlar.</p></article>
+          <article class="system-step"><span class="num">03</span><h3 data-i18n="step3Title">Yerelde çalışma</h3><p data-i18n="step3Text">Ortamınızdaki uygun modelleri ve araçları kullanır.</p></article>
+          <article class="system-step"><span class="num">04</span><h3 data-i18n="step4Title">Doğrulama ve inceleme</h3><p data-i18n="step4Text">Kontrolleri çalıştırır, değişiklikleri sunar ve onayı size bırakır.</p></article>
         </div>
-        <div class="system-foot">A visible process, with human review at the end</div>
+        <div class="system-foot" data-i18n="systemFoot">Görünür bir süreç, sonunda insan incelemesi</div>
       </div>
     </section>
 
 
     <section class="security" id="security">
-      <img class="security-visual" src="assets/visuals/secure-device.jpg" alt="Developer laptop and local storage device, from the Arctic presentation">
+      <img class="security-visual" src="assets/visuals/secure-device.jpg" alt="Geliştirici dizüstü bilgisayarı ve yerel depolama aygıtı, Arctic sunumundan" data-i18n-attr="alt:securityAlt">
       <div class="wrap security-content">
-        <div class="eyebrow">Local work &amp; security</div>
-        <h2 class="section-title">Your data stays<br>on your device.</h2>
-        <p>The agent stays within your limits. Work is designed around a local workspace, a visible scope and changes you can inspect before they land.</p>
-        <div class="security-pledge"><div><strong>Your code</strong><span>stays in your environment.</span></div><div><strong>Your review</strong><span>keeps the final decision with you.</span></div></div>
+        <div class="eyebrow" data-i18n="securityEyebrow">Yerel çalışma ve güvenlik</div>
+        <h2 class="section-title" data-i18n="securityTitle">Verileriniz<br>cihazınızda kalır.</h2>
+        <p data-i18n="securityText">Ajan sizin sınırlarınız içinde kalır. Çalışma; yerel bir çalışma alanı, görünür bir kapsam ve uygulanmadan önce inceleyebileceğiniz değişiklikler etrafında tasarlanır.</p>
+        <div class="security-pledge"><div><strong data-i18n="pledge1Title">Kodunuz</strong><span data-i18n="pledge1Text">sizin ortamınızda kalır.</span></div><div><strong data-i18n="pledge2Title">İncelemeniz</strong><span data-i18n="pledge2Text">son kararı sizde tutar.</span></div></div>
       </div>
     </section>
 
     <section class="usecases" id="developers">
       <div class="wrap">
-        <div class="usecases-head"><div class="eyebrow">Developer use cases</div><h2 class="section-title">Start with the work<br>developers do every day.</h2><p>Begin with focused coding tasks where local execution, clear boundaries and careful review matter.</p></div>
-        <article class="case-row"><div><span class="case-index">01 / SENSITIVE CODEBASES</span><h3>Work with code that can’t leave your environment.</h3></div><p>For defense, finance, healthcare and offline environments with strict data boundaries.</p></article>
-        <article class="case-row"><div><span class="case-index">02 / TESTING &amp; REFACTORING</span><h3>Improve code with checks in the loop.</h3></div><p>Add tests to uncovered modules and refactor while keeping existing behavior under review.</p></article>
+        <div class="usecases-head"><div class="eyebrow" data-i18n="usecasesEyebrow">Geliştirici kullanım senaryoları</div><h2 class="section-title" data-i18n="usecasesTitle">Geliştiricilerin her gün<br>yaptığı işle başlayın.</h2><p data-i18n="usecasesText">Yerel çalıştırmanın, net sınırların ve dikkatli incelemenin önem taşıdığı odaklı kodlama görevleriyle başlayın.</p></div>
+        <article class="case-row"><div><span class="case-index" data-i18n="case1Index">01 / HASSAS KOD TABANLARI</span><h3 data-i18n="case1Title">Ortamınızdan çıkamayan kodlarla çalışın.</h3></div><p data-i18n="case1Text">Katı veri sınırları olan savunma, finans, sağlık ve çevrimdışı ortamlar için.</p></article>
+        <article class="case-row"><div><span class="case-index" data-i18n="case2Index">02 / TEST VE YENİDEN DÜZENLEME</span><h3 data-i18n="case2Title">Kodu, sürece dahil kontrollerle iyileştirin.</h3></div><p data-i18n="case2Text">Test kapsamı dışındaki modüllere testler ekleyin; mevcut davranışı inceleme altında tutarak kodu yeniden düzenleyin.</p></article>
       </div>
     </section>
 
     <section class="roadmap" id="roadmap">
       <div class="wrap">
-        <div class="roadmap-head"><div><div class="eyebrow">From vision to working prototype</div><h2 class="section-title">Starting with developers,<br><span>growing into enterprises.</span></h2></div><p>Arctic is an early-stage venture. We are building from a focused developer use case toward broader, permission-aware workflows.</p></div>
+        <div class="roadmap-head"><div><div class="eyebrow" data-i18n="roadmapEyebrow">Vizyondan çalışan prototipe</div><h2 class="section-title" data-i18n="roadmapTitle">Geliştiricilerle başlıyor,<br><span>kurumlara doğru büyüyoruz.</span></h2></div><p data-i18n="roadmapText">Arctic erken aşamada bir girişim. Odaklı bir geliştirici kullanım senaryosundan yola çıkarak daha kapsamlı, izin odaklı iş akışlarına doğru ilerliyoruz.</p></div>
         <div class="timeline">
-          <article class="milestone"><small>TODAY</small><h3>Validated foundation</h3><p>Core workflows and technical groundwork.</p></article>
-          <article class="milestone"><small>NEXT</small><h3>One agent, one developer</h3><p>A desktop app on the developer’s own device.</p></article>
-          <article class="milestone"><small>THEN</small><h3>Multi-agent workflows</h3><p>Specialists divide work and combine results.</p></article>
-          <article class="milestone"><small>EXPANDING</small><h3>Industry agents</h3><p>Research, operations and marketing workflows.</p></article>
-          <article class="milestone"><small>LATER</small><h3>Organizations</h3><p>Teams collaborate within permissions.</p></article>
+          <article class="milestone"><small data-i18n="m1Tag">BUGÜN</small><h3 data-i18n="m1Title">Doğrulanmış temel</h3><p data-i18n="m1Text">Temel iş akışları ve teknik altyapı.</p></article>
+          <article class="milestone"><small data-i18n="m2Tag">SIRADA</small><h3 data-i18n="m2Title">Bir ajan, bir geliştirici</h3><p data-i18n="m2Text">Geliştiricinin kendi cihazında çalışan bir masaüstü uygulaması.</p></article>
+          <article class="milestone"><small data-i18n="m3Tag">SONRA</small><h3 data-i18n="m3Title">Çoklu ajan iş akışları</h3><p data-i18n="m3Text">Uzman ajanlar işi paylaşır ve sonuçları birleştirir.</p></article>
+          <article class="milestone"><small data-i18n="m4Tag">GENİŞLEME</small><h3 data-i18n="m4Title">Sektörel ajanlar</h3><p data-i18n="m4Text">Araştırma, operasyon ve pazarlama iş akışları.</p></article>
+          <article class="milestone"><small data-i18n="m5Tag">İLERİDE</small><h3 data-i18n="m5Title">Kurumlar</h3><p data-i18n="m5Text">Ekipler izinler dahilinde birlikte çalışır.</p></article>
         </div>
       </div>
     </section>
 
     <section class="team" id="about">
       <div class="wrap">
-        <div class="team-head"><div><div class="eyebrow">Arctic Dynamics / The team</div><h2 class="section-title">People behind<br><span>the idea.</span></h2></div><p>Four perspectives across engineering, AI, robotics and design—working toward AI experiences that keep people in control.</p></div>
-        <div class="team-roles"><div class="team-role"><strong>Safa Kelkit</strong><span>Computer Engineer · Co-founder &amp; CEO</span></div><div class="team-role"><strong>Zeynep Birsin Tokman</strong><span>Industrial Designer · Co-founder</span></div><div class="team-role"><strong>Muammer Sönmez</strong><span>Computer Engineer · Co-founder </span></div><div class="team-role"><strong>İlayda Gül Dağdelen</strong><span>Computer Engineer · Co-founder </span></div></div>
+        <div class="team-head"><div><div class="eyebrow" data-i18n="teamEyebrow">Arctic Dynamics / Ekip</div><h2 class="section-title" data-i18n="teamTitle">Fikrin<br><span>arkasındaki insanlar.</span></h2></div><p data-i18n="teamText">Mühendislik, yapay zekâ, robotik ve tasarım alanlarından dört bakış açısı—insanı kontrolde tutan yapay zekâ deneyimleri için çalışıyor.</p></div>
+        <div class="team-roles"><div class="team-role"><strong>Safa Kelkit</strong><span data-i18n="roleCeo">Bilgisayar Mühendisi · Kurucu Ortak &amp; CEO</span></div><div class="team-role"><strong>Zeynep Birsin Tokman</strong><span data-i18n="roleDesigner">Endüstriyel Tasarımcı · Kurucu Ortak</span></div><div class="team-role"><strong>Muammer Sönmez</strong><span data-i18n="roleEngineer">Bilgisayar Mühendisi · Kurucu Ortak</span></div><div class="team-role"><strong>İlayda Gül Dağdelen</strong><span data-i18n="roleEngineer">Bilgisayar Mühendisi · Kurucu Ortak</span></div></div>
       </div>
     </section>
 
     <section class="ecosystem">
-      <div class="wrap ecosystem-row"><div><div class="eyebrow">An open ecosystem</div><h2 class="section-title">Keep the tools<br><span>you already use.</span></h2><p>Arctic is designed around the models, tools and workflows developers choose—so the experience can adapt to the work.</p></div><img class="ecosystem-visual" src="assets/visuals/tools.jpg" alt="AI and coding tools shown in the Arctic presentation"></div>
+      <div class="wrap ecosystem-row"><div><div class="eyebrow" data-i18n="ecoEyebrow">Açık bir ekosistem</div><h2 class="section-title" data-i18n="ecoTitle">Alıştığınız araçlarla<br><span>çalışmaya devam edin.</span></h2><p data-i18n="ecoText">Arctic, geliştiricilerin tercih ettiği modeller, araçlar ve iş akışları etrafında tasarlanır—böylece deneyim yapılan işe uyum sağlar.</p></div><img class="ecosystem-visual" src="assets/visuals/tools.jpg" alt="Arctic sunumunda yer alan yapay zekâ ve kodlama araçları" data-i18n-attr="alt:ecoAlt"></div>
     </section>
 
     <section class="tester" id="tester" aria-labelledby="testerTitle">
       <div class="wrap tester-row">
         <div>
-          <div class="eyebrow">Join the testing</div>
-          <h2 class="section-title" id="testerTitle">Help us build<br><span>what comes next.</span></h2>
-          <p>We are looking for people who want to try early versions of Arctic and tell us what works and what doesn’t. Sign up as a tester and we’ll reach out when testing begins.</p>
-          <button class="cta" type="button" data-open-modal="tester">Become a tester <span aria-hidden="true">→</span></button>
+          <div class="eyebrow" data-i18n="testerEyebrow">Testlere katılın</div>
+          <h2 class="section-title" id="testerTitle" data-i18n="testerTitle">Sıradakini<br><span>birlikte inşa edelim.</span></h2>
+          <p data-i18n="testerText">Arctic’in erken sürümlerini denemek ve neyin işe yarayıp neyin yaramadığını bize anlatmak isteyen kişiler arıyoruz. Test kullanıcısı olarak kaydolun, testler başladığında size ulaşalım.</p>
+          <button class="cta" type="button" data-open-modal="tester" data-i18n="becomeTesterArrow">Test kullanıcısı ol <span aria-hidden="true">→</span></button>
         </div>
         <ul class="tester-points">
-          <li>Try early versions<span>Be among the first to use Arctic.</span></li>
-          <li>Share honest feedback<span>Tell us what works and what doesn’t.</span></li>
-          <li>Help shape Arctic<span>Your input guides what we build next.</span></li>
+          <li data-i18n="tp1">Erken sürümleri deneyin<span>Arctic’i ilk kullananlardan olun.</span></li>
+          <li data-i18n="tp2">Dürüst geri bildirim verin<span>Neyin işe yarayıp neyin yaramadığını söyleyin.</span></li>
+          <li data-i18n="tp3">Arctic’e yön verin<span>Görüşleriniz bir sonraki adımımızı belirler.</span></li>
         </ul>
       </div>
     </section>
 
-    <section class="final-cta" id="waitlist"><div class="wrap"><div class="eyebrow">Arctic Dynamics</div><h2 class="section-title">AI that works<br><span>on your terms.</span></h2><p>Follow Arctic’s progress and be among the first to hear about early access.</p><button class="cta" type="button" data-open-modal>Join the waitlist <span aria-hidden="true">→</span></button></div></section>
+    <section class="final-cta" id="waitlist"><div class="wrap"><div class="eyebrow">Arctic Dynamics</div><h2 class="section-title" data-i18n="finalTitle">Sizin koşullarınızda<br><span>çalışan yapay zekâ.</span></h2><p data-i18n="finalText">Arctic’in gelişimini takip edin, erken erişim haberlerini ilk duyanlardan olun.</p><button class="cta" type="button" data-open-modal data-i18n="joinWaitlistArrow">Bekleme listesine katıl <span aria-hidden="true">→</span></button></div></section>
     <section class="coming-soon" id="coming-soon" aria-labelledby="comingTitle">
       <div class="wrap coming-inner">
         <div class="coming-copy-block">
           <div class="coming-star" aria-hidden="true">✦</div>
-          <div class="eyebrow">The next chapter</div>
-          <h2 id="comingTitle">Arctic is<br><span>coming soon.</span></h2>
-          <p class="coming-copy">A new way to work with AI is on the horizon. Join the waitlist and we’ll let you know when Arctic is ready to meet you.</p>
-          <button class="outline hourglass-cta" type="button" data-open-modal>Get early access <span aria-hidden="true">→</span></button>
-          <p class="hourglass-note">A little more time&nbsp; · &nbsp;A lot more possibility</p>        </div>
-        <div class="hourglass-stage" role="img" aria-label="A glowing glass hourglass filled with separate particles. Grains flow through the narrow neck and gather loosely at the bottom.">
-          <span class="hourglass-caption" aria-hidden="true">Sand in motion</span>
+          <div class="eyebrow" data-i18n="comingEyebrow">Sıradaki bölüm</div>
+          <h2 id="comingTitle" data-i18n="comingTitle">Arctic<br><span>çok yakında.</span></h2>
+          <p class="coming-copy" data-i18n="comingText">Yapay zekâyla çalışmanın yeni bir yolu ufukta. Bekleme listesine katılın; Arctic sizinle buluşmaya hazır olduğunda haber verelim.</p>
+          <button class="outline hourglass-cta" type="button" data-open-modal data-i18n="earlyAccessArrow">Erken erişim al <span aria-hidden="true">→</span></button>
+          <p class="hourglass-note" data-i18n="hourglassNote">Biraz daha zaman&nbsp; · &nbsp;Çok daha fazla olasılık</p>        </div>
+        <div class="hourglass-stage" role="img" aria-label="Ayrı parçacıklarla dolu, parlayan cam bir kum saati. Taneler dar boğazdan akar ve altta gevşekçe birikir." data-i18n-attr="aria-label:hourglassLabel">
+          <span class="hourglass-caption" aria-hidden="true" data-i18n="hourglassCaption">Akan kum</span>
           <svg class="hourglass-svg" viewBox="0 0 360 610" aria-hidden="true">
             <defs><clipPath id="hourglassClip"><path d="M53 36 C56 108 69 183 135 242 L163 267 C173 276 173 292 163 301 L135 327 C69 386 56 460 53 534 C52 548 62 557 76 557 H284 C298 557 308 548 307 534 C304 460 291 386 225 327 L197 301 C187 292 187 276 197 267 L225 242 C291 183 304 108 307 36 C308 22 298 13 284 13 H76 C62 13 52 22 53 36Z"/></clipPath><linearGradient id="glassEdge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9cf5ff"/><stop offset=".5" stop-color="#43d6ed"/><stop offset="1" stop-color="#168fca"/></linearGradient><linearGradient id="glassInterior" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#113c53" stop-opacity=".5"/><stop offset="1" stop-color="#061a29" stop-opacity=".13"/></linearGradient></defs>
             <path class="hourglass-outline" fill="url(#glassInterior)" d="M53 36 C56 108 69 183 135 242 L163 267 C173 276 173 292 163 301 L135 327 C69 386 56 460 53 534 C52 548 62 557 76 557 H284 C298 557 308 548 307 534 C304 460 291 386 225 327 L197 301 C187 292 187 276 197 267 L225 242 C291 183 304 108 307 36 C308 22 298 13 284 13 H76 C62 13 52 22 53 36Z"/>
@@ -268,12 +275,58 @@
       </div>
     </section>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#top" aria-label="Arctic Dynamics, back to top"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><span>Local by design · Human controlled</span><a href="/privacy.html">Privacy Notice</a><a href="#top">Back to top ↑</a></div></footer>
-  <div class="modal-backdrop" id="waitlistModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalIntro"><button class="modal-close" type="button" data-close-modal aria-label="Close waitlist form">×</button><a class="brand" href="#top" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><h2 id="modalTitle">Get early <span>access.</span></h2><p id="modalIntro">Be among the first to try Arctic.</p><form class="email-form" id="waitlistForm"><label for="fullName">Full name</label><input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First and last name" maxlength="100" pattern=" *[^ ]+ +[^ ].*" required><label for="email" style="margin-top:14px">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" maxlength="254" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="consent"><input type="checkbox" name="consent" required> <span id="consentText">I agree to my name and email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a>.</span></label><button type="submit" id="waitlistSubmit">Join the waitlist</button></form><p class="privacy-note" id="privacyNote">This is a preview site. We only save your name and email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.</p><p class="form-success" id="formSuccess" role="status" aria-live="polite"></p></section></div>
+  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#top" aria-label="Arctic Dynamics, başa dön" data-i18n-attr="aria-label:footerBrandLabel"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><span data-i18n="footerTag">Tasarımıyla yerel · İnsan kontrolünde</span><a href="/privacy.html#tr" data-i18n="privacyLink" data-i18n-attr="href:privacyHref">Aydınlatma Metni</a><a href="#top" data-i18n="backToTop">Başa dön ↑</a></div></footer>
+  <div class="modal-backdrop" id="waitlistModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalIntro"><button class="modal-close" type="button" data-close-modal aria-label="Formu kapat" data-i18n-attr="aria-label:closeLabel">×</button><a class="brand" href="#top" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span class="brand-type">ARCTIC<small>DYNAMICS</small></span></a><h2 id="modalTitle"></h2><p id="modalIntro"></p><form class="email-form" id="waitlistForm"><label for="fullName" data-i18n="nameLabel">Ad soyad</label><input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Adınız ve soyadınız" data-i18n-attr="placeholder:namePlaceholder" maxlength="100" pattern=" *[^ ]+ +[^ ].*" required><label for="email" style="margin-top:14px" data-i18n="emailLabel">E-posta adresi</label><input id="email" name="email" type="email" autocomplete="email" placeholder="ornek@sirket.com" data-i18n-attr="placeholder:emailPlaceholder" maxlength="254" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="consent"><input type="checkbox" name="consent" required> <span id="consentText"></span></label><button type="submit" id="waitlistSubmit"></button></form><p class="privacy-note" id="privacyNote"></p><p class="form-success" id="formSuccess" role="status" aria-live="polite"></p></section></div>
   <script>
     (()=>{
-
-      const modal=document.getElementById('waitlistModal'),email=modal.querySelector('input'),menu=document.getElementById('navLinks'),toggle=document.getElementById('menuToggle');let previousFocus=null;const PN='<a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a>';const MODES={waitlist:{title:'Get early <span>access.</span>',intro:'Be among the first to try Arctic.',btn:'Join the waitlist',consent:'I agree to my name and email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the '+PN+'.',note:'This is a preview site. We only save your name and email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.'},tester:{title:'Become a <span>tester.</span>',intro:'Help shape Arctic by trying early versions and sharing feedback.',btn:'Sign up as a tester',consent:'I agree to my name and email being stored for the tester programme and the waitlist, to being contacted about testing, and to the transfer abroad (Vercel, Neon), as described in the '+PN+'.',note:'We only save your name and email address and will email you only about testing. A hashed IP is kept for 24 hours to prevent abuse.'}};function openModal(tester){previousFocus=document.activeElement;const m=MODES[tester?'tester':'waitlist'];modal.dataset.mode=tester?'tester':'waitlist';document.getElementById('modalTitle').innerHTML=m.title;document.getElementById('modalIntro').textContent=m.intro;document.getElementById('waitlistSubmit').textContent=m.btn;document.getElementById('consentText').innerHTML=m.consent;document.getElementById('privacyNote').textContent=m.note;document.getElementById('formSuccess').style.display='none';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>email.focus(),0)}function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus)previousFocus.focus()}document.querySelectorAll('[data-open-modal]').forEach(button=>button.addEventListener('click',()=>openModal(button.dataset.openModal==='tester')));modal.querySelector('[data-close-modal]').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))closeModal()});const vmsg={fullName:()=>'Please enter your first and last name.',email:v=>v.valueMissing?'Please enter your email address.':'Please enter a valid email address.',consent:()=>'Please tick this box to continue.'};['fullName','email','consent'].forEach(n=>{const el=document.getElementById('waitlistForm').elements[n];el.addEventListener('invalid',()=>el.setCustomValidity(vmsg[n](el.validity)));['input','change'].forEach(ev=>el.addEventListener(ev,()=>el.setCustomValidity('')))});document.getElementById('waitlistForm').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget,btn=document.getElementById('waitlistSubmit'),msg=document.getElementById('formSuccess'),label=btn.textContent;const show=(t,err)=>{msg.textContent=t;msg.style.color=err?'#ff9a9a':'#69e3b0';msg.style.display='block'};btn.disabled=true;btn.textContent='Sending…';msg.style.display='none';try{const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:form.fullName.value,email:form.email.value,website:form.website.value,consent:form.consent.checked,tester:modal.dataset.mode==='tester'})});const data=await res.json().catch(()=>({}));if(res.ok&&data.ok){show(modal.dataset.mode==='tester'?'Thanks! You\'re on the tester list.':'You\'re on the waitlist!');form.reset()}else if(data.error==='invalid_name'){show('Please enter your first and last name.',true)}else if(data.error==='invalid_email'){show('Please enter a valid email address.',true)}else if(data.error==='consent_required'){show('Please tick the consent box to join.',true)}else if(data.error==='rate_limited'){show('Too many attempts. Please try again later.',true)}else{show('Something went wrong. Please try again.',true)}}catch(e){show('Could not connect. Please check your connection and try again.',true)}finally{btn.disabled=false;btn.textContent=label}});toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));})();
+      const EN={
+        docTitle:'Arctic Dynamics — Your AI. Your device. Your rules.',
+        docDesc:'Arctic is a local-first coding agent that works in your environment, within your limits, with results you can review.',
+        navLabel:'Main navigation',homeLabel:'Arctic Dynamics home',navPlatform:'Platform',navHow:'How it works',navSecurity:'Security',navAbout:'About',becomeTester:'Become a tester',navWaitlist:'Join waitlist',menu:'Menu',menuLabel:'Open navigation',
+        heroEyebrow:'Local-first AI for developers',heroTitle:'Your AI.<br>Your device.<span>Your rules.</span>',heroText:'A coding agent that plans, works and verifies changes in your environment—keeping the scope visible and the final decision yours.',joinWaitlistArrow:'Join the waitlist <span aria-hidden="true">→</span>',exploreArctic:'Explore Arctic <span aria-hidden="true">↓</span>',heroNote:'Local work · Visible limits · Reviewable results',heroArtLabel:'Arctic Dynamics A mark with orbit and star',orbitTop:'Runs in your environment',heroMarkAlt:'Arctic Dynamics angular A logo, orbit and star',orbitBottom:'Built around your rules',discover:'Discover Arctic',
+        manifestoAlt:'A human hand reaching toward a digital globe, from the Arctic presentation',manifestoEyebrow:'A different AI ecosystem',manifestoTitle:'AI should work<br>where <span>your work lives.</span>',manifestoText:'Cloud-based AI can limit control, increase provider dependency and add recurring costs. Arctic brings optimized models, relevant project knowledge, tools and built-in checks together in a local-first system.',manifestoQuote:'Small models. The right tools. Your environment.',
+        systemEyebrow:'One connected system',systemTitle:'From task to<br><span>verified result.</span>',systemText:'Hand off everyday coding work. Arctic makes each step visible, works within the boundaries you set, and leaves the final review with you.',workflowLabel:'Arctic workflow',step1Title:'Define the scope',step1Text:'Set the goal, permissions and boundaries for the task.',step2Title:'Understand &amp; plan',step2Text:'Read the codebase and make a plan you can inspect.',step3Title:'Work locally',step3Text:'Use suitable models and tools in your environment.',step4Title:'Verify &amp; review',step4Text:'Run checks, present the changes and keep approval in your hands.',systemFoot:'A visible process, with human review at the end',
+        securityAlt:'Developer laptop and local storage device, from the Arctic presentation',securityEyebrow:'Local work &amp; security',securityTitle:'Your data stays<br>on your device.',securityText:'The agent stays within your limits. Work is designed around a local workspace, a visible scope and changes you can inspect before they land.',pledge1Title:'Your code',pledge1Text:'stays in your environment.',pledge2Title:'Your review',pledge2Text:'keeps the final decision with you.',
+        usecasesEyebrow:'Developer use cases',usecasesTitle:'Start with the work<br>developers do every day.',usecasesText:'Begin with focused coding tasks where local execution, clear boundaries and careful review matter.',case1Index:'01 / SENSITIVE CODEBASES',case1Title:'Work with code that can’t leave your environment.',case1Text:'For defense, finance, healthcare and offline environments with strict data boundaries.',case2Index:'02 / TESTING &amp; REFACTORING',case2Title:'Improve code with checks in the loop.',case2Text:'Add tests to uncovered modules and refactor while keeping existing behavior under review.',
+        roadmapEyebrow:'From vision to working prototype',roadmapTitle:'Starting with developers,<br><span>growing into enterprises.</span>',roadmapText:'Arctic is an early-stage venture. We are building from a focused developer use case toward broader, permission-aware workflows.',m1Tag:'TODAY',m1Title:'Validated foundation',m1Text:'Core workflows and technical groundwork.',m2Tag:'NEXT',m2Title:'One agent, one developer',m2Text:'A desktop app on the developer’s own device.',m3Tag:'THEN',m3Title:'Multi-agent workflows',m3Text:'Specialists divide work and combine results.',m4Tag:'EXPANDING',m4Title:'Industry agents',m4Text:'Research, operations and marketing workflows.',m5Tag:'LATER',m5Title:'Organizations',m5Text:'Teams collaborate within permissions.',
+        teamEyebrow:'Arctic Dynamics / The team',teamTitle:'People behind<br><span>the idea.</span>',teamText:'Four perspectives across engineering, AI, robotics and design—working toward AI experiences that keep people in control.',roleCeo:'Computer Engineer · Co-founder &amp; CEO',roleDesigner:'Industrial Designer · Co-founder',roleEngineer:'Computer Engineer · Co-founder',
+        ecoEyebrow:'An open ecosystem',ecoTitle:'Keep the tools<br><span>you already use.</span>',ecoText:'Arctic is designed around the models, tools and workflows developers choose—so the experience can adapt to the work.',ecoAlt:'AI and coding tools shown in the Arctic presentation',
+        testerEyebrow:'Join the testing',testerTitle:'Help us build<br><span>what comes next.</span>',testerText:'We are looking for people who want to try early versions of Arctic and tell us what works and what doesn’t. Sign up as a tester and we’ll reach out when testing begins.',becomeTesterArrow:'Become a tester <span aria-hidden="true">→</span>',tp1:'Try early versions<span>Be among the first to use Arctic.</span>',tp2:'Share honest feedback<span>Tell us what works and what doesn’t.</span>',tp3:'Help shape Arctic<span>Your input guides what we build next.</span>',
+        finalTitle:'AI that works<br><span>on your terms.</span>',finalText:'Follow Arctic’s progress and be among the first to hear about early access.',comingEyebrow:'The next chapter',comingTitle:'Arctic is<br><span>coming soon.</span>',comingText:'A new way to work with AI is on the horizon. Join the waitlist and we’ll let you know when Arctic is ready to meet you.',earlyAccessArrow:'Get early access <span aria-hidden="true">→</span>',hourglassNote:'A little more time&nbsp; · &nbsp;A lot more possibility',hourglassLabel:'A glowing glass hourglass filled with separate particles. Grains flow through the narrow neck and gather loosely at the bottom.',hourglassCaption:'Sand in motion',
+        footerBrandLabel:'Arctic Dynamics, back to top',footerTag:'Local by design · Human controlled',privacyLink:'Privacy Notice',privacyHref:'/privacy.html#en',backToTop:'Back to top ↑',
+        closeLabel:'Close form',nameLabel:'Full name',namePlaceholder:'First and last name',emailLabel:'Email address',emailPlaceholder:'you@company.com'
+      };
+      const PN={tr:'<a href="/privacy.html#tr" target="_blank" rel="noopener">Aydınlatma Metni</a>',en:'<a href="/privacy.html#en" target="_blank" rel="noopener">Privacy Notice</a>'};
+      const MODES={
+        tr:{waitlist:{title:'Erken erişim <span>kazanın.</span>',intro:'Arctic’i ilk deneyenlerden olun.',btn:'Bekleme listesine katıl',consent:PN.tr+'’nde açıklandığı şekilde, adımın ve e-posta adresimin bekleme listesi için saklanmasını ve yurt dışına (Vercel, Neon) aktarılmasını kabul ediyorum.',note:'Bu bir önizleme sitesidir. Bekleme listesi için yalnızca adınızı ve e-posta adresinizi kaydederiz; size e-posta göndermeyiz. Kötüye kullanımı önlemek için IP adresinizin özeti (hash) 24 saat saklanır.'},tester:{title:'Test kullanıcısı <span>olun.</span>',intro:'Erken sürümleri deneyip geri bildirim vererek Arctic’e yön verin.',btn:'Test kullanıcısı olarak kaydol',consent:PN.tr+'’nde açıklandığı şekilde, adımın ve e-posta adresimin test programı ve bekleme listesi için saklanmasını, testlerle ilgili benimle iletişime geçilmesini ve yurt dışına (Vercel, Neon) aktarılmasını kabul ediyorum.',note:'Yalnızca adınızı ve e-posta adresinizi kaydederiz ve size yalnızca testlerle ilgili e-posta göndeririz. Kötüye kullanımı önlemek için IP adresinizin özeti (hash) 24 saat saklanır.'}},
+        en:{waitlist:{title:'Get early <span>access.</span>',intro:'Be among the first to try Arctic.',btn:'Join the waitlist',consent:'I agree to my name and email being stored for the waitlist and transferred abroad (Vercel, Neon), as described in the '+PN.en+'.',note:'This is a preview site. We only save your name and email address to the waitlist and do not send any emails. A hashed IP is kept for 24 hours to prevent abuse.'},tester:{title:'Become a <span>tester.</span>',intro:'Help shape Arctic by trying early versions and sharing feedback.',btn:'Sign up as a tester',consent:'I agree to my name and email being stored for the tester programme and the waitlist, to being contacted about testing, and to the transfer abroad (Vercel, Neon), as described in the '+PN.en+'.',note:'We only save your name and email address and will email you only about testing. A hashed IP is kept for 24 hours to prevent abuse.'}}
+      };
+      const MSG={
+        tr:{name:'Lütfen adınızı ve soyadınızı girin.',emailMissing:'Lütfen e-posta adresinizi girin.',emailInvalid:'Lütfen geçerli bir e-posta adresi girin.',consentBox:'Devam etmek için lütfen bu kutuyu işaretleyin.',sending:'Gönderiliyor…',okTester:'Teşekkürler! Test kullanıcısı listesine eklendiniz.',okWaitlist:'Bekleme listesine eklendiniz!',consentRequired:'Katılmak için lütfen onay kutusunu işaretleyin.',rateLimited:'Çok fazla deneme yapıldı. Lütfen daha sonra tekrar deneyin.',generic:'Bir şeyler ters gitti. Lütfen tekrar deneyin.',network:'Bağlantı kurulamadı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.'},
+        en:{name:'Please enter your first and last name.',emailMissing:'Please enter your email address.',emailInvalid:'Please enter a valid email address.',consentBox:'Please tick this box to continue.',sending:'Sending…',okTester:'Thanks! You\'re on the tester list.',okWaitlist:'You\'re on the waitlist!',consentRequired:'Please tick the consent box to join.',rateLimited:'Too many attempts. Please try again later.',generic:'Something went wrong. Please try again.',network:'Could not connect. Please check your connection and try again.'}
+      };
+      // Turkish is the page's own text; capture it once so switching back restores it exactly.
+      const TR={docTitle:document.title,docDesc:document.querySelector('meta[name="description"]').content};
+      const textEls=[...document.querySelectorAll('[data-i18n]')],attrEls=[...document.querySelectorAll('[data-i18n-attr]')];
+      const attrPairs=el=>el.dataset.i18nAttr.split(';').map(p=>p.split(':'));
+      textEls.forEach(el=>{if(!(el.dataset.i18n in TR))TR[el.dataset.i18n]=el.innerHTML});
+      attrEls.forEach(el=>attrPairs(el).forEach(([attr,key])=>{if(!(key in TR))TR[key]=el.getAttribute(attr)}));
+      const DICT={tr:TR,en:EN};let lang='tr';
+      const modal=document.getElementById('waitlistModal'),email=modal.querySelector('input'),menu=document.getElementById('navLinks'),toggle=document.getElementById('menuToggle');let previousFocus=null;
+      function renderModal(){const m=MODES[lang][modal.dataset.mode==='tester'?'tester':'waitlist'];document.getElementById('modalTitle').innerHTML=m.title;document.getElementById('modalIntro').textContent=m.intro;const btn=document.getElementById('waitlistSubmit');if(!btn.disabled)btn.textContent=m.btn;document.getElementById('consentText').innerHTML=m.consent;document.getElementById('privacyNote').textContent=m.note}
+      function setLang(next,save){
+        lang=next==='en'?'en':'tr';const d=DICT[lang];
+        document.documentElement.lang=lang;document.title=d.docTitle;document.querySelector('meta[name="description"]').content=d.docDesc;
+        textEls.forEach(el=>{const v=d[el.dataset.i18n];if(v!=null)el.innerHTML=v});
+        attrEls.forEach(el=>attrPairs(el).forEach(([attr,key])=>{if(d[key]!=null)el.setAttribute(attr,d[key])}));
+        document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+        renderModal();document.getElementById('formSuccess').style.display='none';
+        if(save){try{localStorage.setItem('arctic-lang',lang)}catch(e){}}
+      }
+      document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang,true)));
+      let initial='tr';try{const q=new URLSearchParams(location.search).get('lang');initial=q||localStorage.getItem('arctic-lang')||'tr'}catch(e){}
+      modal.dataset.mode='waitlist';setLang(initial,false);
+      function openModal(tester){previousFocus=document.activeElement;modal.dataset.mode=tester?'tester':'waitlist';renderModal();document.getElementById('formSuccess').style.display='none';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>email.focus(),0)}function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus)previousFocus.focus()}document.querySelectorAll('[data-open-modal]').forEach(button=>button.addEventListener('click',()=>openModal(button.dataset.openModal==='tester')));modal.querySelector('[data-close-modal]').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))closeModal()});const vmsg={fullName:()=>MSG[lang].name,email:v=>v.valueMissing?MSG[lang].emailMissing:MSG[lang].emailInvalid,consent:()=>MSG[lang].consentBox};['fullName','email','consent'].forEach(n=>{const el=document.getElementById('waitlistForm').elements[n];el.addEventListener('invalid',()=>el.setCustomValidity(vmsg[n](el.validity)));['input','change'].forEach(ev=>el.addEventListener(ev,()=>el.setCustomValidity('')))});document.getElementById('waitlistForm').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget,btn=document.getElementById('waitlistSubmit'),msg=document.getElementById('formSuccess'),label=btn.textContent;const show=(t,err)=>{msg.textContent=t;msg.style.color=err?'#ff9a9a':'#69e3b0';msg.style.display='block'};btn.disabled=true;btn.textContent=MSG[lang].sending;msg.style.display='none';try{const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:form.fullName.value,email:form.email.value,website:form.website.value,consent:form.consent.checked,tester:modal.dataset.mode==='tester'})});const data=await res.json().catch(()=>({}));const M=MSG[lang];if(res.ok&&data.ok){show(modal.dataset.mode==='tester'?M.okTester:M.okWaitlist);form.reset()}else if(data.error==='invalid_name'){show(M.name,true)}else if(data.error==='invalid_email'){show(M.emailInvalid,true)}else if(data.error==='consent_required'){show(M.consentRequired,true)}else if(data.error==='rate_limited'){show(M.rateLimited,true)}else{show(M.generic,true)}}catch(e){show(MSG[lang].network,true)}finally{btn.disabled=false;renderModal()}});toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));})();
   </script>
 </body>
 </html>

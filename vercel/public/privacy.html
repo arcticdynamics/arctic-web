@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Notice – Arctic Dynamics</title>
+<title>Aydınlatma Metni – Arctic Dynamics</title>
 <meta name="robots" content="noindex">
 <style>
 :root{--bg:#04111d;--ink:#f2f7fa;--muted:#a9bdc8;--cyan:#31d7e9;--line:rgba(106,184,202,.2)}
@@ -32,14 +32,14 @@ a{color:var(--cyan)}
 <header class="top"><div class="top-in">
 <a class="brand" href="/" aria-label="Arctic Dynamics"><img src="assets/arctic-mark.png" alt=""><span>ARCTIC DYNAMICS</span></a>
 <div class="top-right">
-<a href="/" id="back">&larr; Back to site</a>
+<a href="/" id="back">&larr; Siteye dön</a>
 <label class="lang-sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.500 0 18M12 3c-3 3.5-3 14.500 0 18"/></svg><span class="sr" hidden>Language</span>
-<select id="langSel" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option></select></label>
+<select id="langSel" aria-label="Dil / Language"><option value="tr">Türkçe</option><option value="en">English</option></select></label>
 </div>
 </div></header>
 <main>
 
-<section id="en" lang="en">
+<section id="en" lang="en" hidden>
 <h1>Privacy Notice</h1>
 <p class="meta">Last updated: 19 November 2026</p>
 
@@ -72,7 +72,7 @@ a{color:var(--cyan)}
 
 </section>
 
-<section id="tr" lang="tr" hidden>
+<section id="tr" lang="tr">
 <h1>Aydınlatma Metni</h1>
 <p class="meta">Son güncelleme: 19 Kasım 2026</p>
 
@@ -108,15 +108,16 @@ a{color:var(--cyan)}
 (function(){
   var secs={en:document.getElementById('en'),tr:document.getElementById('tr')},sel=document.getElementById('langSel'),back=document.getElementById('back');
   function set(l){
-    if(!secs[l])l='en';
+    if(!secs[l])l='tr';
     for(var k in secs)secs[k].hidden=(k!==l);
     document.documentElement.lang=l;
     sel.value=l;
     back.textContent=l==='tr'?'← Siteye dön':'← Back to site';
     document.title=l==='tr'?'Aydınlatma Metni – Arctic Dynamics':'Privacy Notice – Arctic Dynamics';
   }
-  sel.addEventListener('change',function(){set(sel.value);history.replaceState(null,'','#'+sel.value)});
-  set(location.hash==='#tr'?'tr':'en');
+  sel.addEventListener('change',function(){set(sel.value);history.replaceState(null,'','#'+sel.value);try{localStorage.setItem('arctic-lang',sel.value)}catch(e){}});
+  var saved=null;try{saved=localStorage.getItem('arctic-lang')}catch(e){}
+  set(location.hash==='#en'?'en':location.hash==='#tr'?'tr':(saved||'tr'));
 })();
 </script>
 </body>
